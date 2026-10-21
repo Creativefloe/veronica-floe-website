@@ -62,19 +62,15 @@ After changing environment variables, start a new deploy so they take effect.
 
 ---
 
-## 3. Contact form (Netlify Forms)
+## 3. Contact form (opens the visitor's email app)
 
-The contact form uses **Netlify Forms**, which is built into Netlify (free, no extra account).
-Each enquiry is stored in Netlify and emailed to Veronika.
+The contact form does not send anything by itself. When a visitor clicks **Open email** / **Åpne e-post**,
+their own email app opens with a ready-written message to the address in **Settings** (creativefloe@gmail.com),
+listing everything they filled in. They press Send in their email app, and the enquiry arrives as a normal email.
 
-- **See all enquiries:** Netlify → the project → **Forms** → form `kontakt`.
-- **Who gets the email:** Netlify → **Project configuration → Notifications → Emails and webhooks →
-  Form submission notifications**. Add or change the address there.
-- **Spam:** a hidden "honeypot" field (`bot-field`) and Netlify's spam filter catch bots.
-  Anything flagged ends up under **Forms → Spam submissions**, so check there now and then.
-- Replying: just reply to the email. The visitor's email address is in the message.
-
-The form only works on the live site (or a Netlify deploy preview), not in `npm run dev`.
+- Nothing is stored on the website and there is no form service or spam filter in between.
+- If a visitor has no email app set up, the page shows the email address and a **Copy the message** button.
+- To change where enquiries go, change the email under **Innstillinger / Settings** in the editor.
 
 ---
 

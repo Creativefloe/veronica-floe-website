@@ -86,9 +86,8 @@
       "locationHint": "Optional. For example Bygdøy, Bærum or at your home.",
       "message": "Tell me a little about what you would like",
       "messageHint": "What kind of photos are you dreaming of? Anything special I should know?",
-      "submit": "Send enquiry",
-      "sending": "Sending…",
-      "privacyNote": "Your details are only used to reply to your enquiry. Read more in the <a href=\"/en/privacy/\">privacy policy</a>.",
+      "submit": "Open email",
+      "privacyNote": "Nothing is stored on the website. Read more in the <a href=\"/en/privacy/\">privacy policy</a>.",
       "errors": {
         "summary": "Something is missing. Please check the highlighted fields.",
         "name": "Please enter your name.",
@@ -98,13 +97,18 @@
         "people": "Please enter a number between 1 and 30."
       },
       "success": {
-        "heading": "Thank you for your message!",
-        "text": "I have received your enquiry and will reply by email as soon as I can. If you don’t hear from me, please check your spam folder."
+        "heading": "Almost done!",
+        "text": "Your email app should open now with the message ready. Press Send there, and I will reply as soon as I can."
       },
-      "failure": "Sorry, your message could not be sent right now. Please try again, or email me directly.",
-      "notConfigured": "The form is not connected yet. Please email me directly and I will reply as soon as I can.",
       "mailtoFallback": "Prefer email? Write to",
-      "mailSubject": "Photo session enquiry"
+      "mailSubject": "Photo session enquiry",
+      "mailtoNote": "The button opens your email app with the message filled in. Just press Send there.",
+      "reopen": "Open the email again",
+      "noApp": "Nothing opened? Copy the message and send it to",
+      "copy": "Copy the message",
+      "copied": "Copied!",
+      "bodyIntro": "Hi Veronika!",
+      "langLabel": "Language"
     }
   },
   "notFound": {

@@ -13,9 +13,9 @@
       {
         "heading": "Kontaktskjemaet",
         "body": [
-          "Når du sender en forespørsel, får jeg navnet ditt, e-postadressen din og det du skriver i skjemaet: ønsket dato, type fotografering, antall personer, omtrentlig sted og beskrivelsen din.",
-          "Jeg bruker opplysningene bare til å svare deg og planlegge en eventuell fotografering. Grunnlaget er at du selv ber om det, og at det er nødvendig for å inngå en avtale (personvernforordningen artikkel 6 nr. 1 bokstav b).",
-          "Skjemaet sendes via Netlify, som også drifter nettsiden. Netlify lagrer meldingen og sender den videre til e-posten min. Netlify kan lagre opplysningene på servere i USA. Overføringen er sikret med EUs standardkontrakter."
+          "Kontaktskjemaet sender ikke noe selv, og ingenting lagres på nettsiden. Når du trykker «Åpne e-post», åpnes ditt eget e-postprogram med en ferdig utfylt melding til meg, som du selv velger å sende.",
+          "Når du sender e-posten, får jeg navnet ditt, e-postadressen din og det du har skrevet: ønsket dato, type fotografering, antall personer, omtrentlig sted og beskrivelsen din.",
+          "Jeg bruker opplysningene bare til å svare deg og planlegge en eventuell fotografering. Grunnlaget er at du selv ber om det, og at det er nødvendig for å inngå en avtale (personvernforordningen artikkel 6 nr. 1 bokstav b). E-posten lagres i e-postkontoen min hos Google (Gmail)."
         ]
       },
       {
@@ -65,9 +65,9 @@
       {
         "heading": "The contact form",
         "body": [
-          "When you send an enquiry, I receive your name, your email address and what you write in the form: preferred date, type of session, number of people, approximate location and your description.",
-          "I only use this information to reply to you and to plan a possible session. The legal basis is that you ask for it yourself and that it is necessary to enter into an agreement (GDPR Article 6(1)(b)).",
-          "The form is sent through Netlify, which also hosts this website. Netlify stores the message and forwards it to my email. Netlify may store the data on servers in the USA. The transfer is protected by the EU Standard Contractual Clauses."
+          "The contact form does not send anything itself, and nothing is stored on the website. When you press “Open email”, your own email app opens with a ready-written message to me, which you choose to send.",
+          "When you send the email, I receive your name, your email address and what you wrote: preferred date, type of session, number of people, approximate location and your description.",
+          "I only use this information to reply to you and to plan a possible session. The legal basis is that you ask for it yourself and that it is necessary to enter into an agreement (GDPR Article 6(1)(b)). The email is stored in my email account with Google (Gmail)."
         ]
       },
       {

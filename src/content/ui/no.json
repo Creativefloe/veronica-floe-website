@@ -86,9 +86,8 @@
       "locationHint": "Valgfritt. For eksempel Bygdøy, Bærum eller hjemme hos dere.",
       "message": "Fortell litt om hva du ønsker",
       "messageHint": "Hva slags bilder drømmer du om? Er det noe spesielt jeg bør vite?",
-      "submit": "Send forespørsel",
-      "sending": "Sender…",
-      "privacyNote": "Opplysningene brukes kun til å svare på forespørselen din. Les mer i <a href=\"/personvern/\">personvernerklæringen</a>.",
+      "submit": "Åpne e-post",
+      "privacyNote": "Ingenting lagres på nettsiden. Les mer i <a href=\"/personvern/\">personvernerklæringen</a>.",
       "errors": {
         "summary": "Noe mangler. Se over feltene som er markert.",
         "name": "Skriv inn navnet ditt.",
@@ -98,13 +97,18 @@
         "people": "Skriv inn et tall mellom 1 og 30."
       },
       "success": {
-        "heading": "Takk for meldingen!",
-        "text": "Jeg har fått forespørselen din og svarer deg på e-post så snart jeg kan. Sjekk gjerne søppelpost-mappen hvis du ikke hører fra meg."
+        "heading": "Nesten ferdig!",
+        "text": "E-postprogrammet ditt skal nå åpne seg med meldingen klar. Trykk Send der, så svarer jeg deg så snart jeg kan."
       },
-      "failure": "Beklager, meldingen kunne ikke sendes akkurat nå. Prøv igjen, eller send meg en e-post direkte.",
-      "notConfigured": "Skjemaet er ikke koblet til ennå. Send meg en e-post direkte, så svarer jeg så snart jeg kan.",
       "mailtoFallback": "Foretrekker du e-post? Skriv til",
-      "mailSubject": "Forespørsel om fotografering"
+      "mailSubject": "Forespørsel om fotografering",
+      "mailtoNote": "Knappen åpner e-postprogrammet ditt med meldingen ferdig utfylt. Du trykker bare Send der.",
+      "reopen": "Åpne e-posten på nytt",
+      "noApp": "Åpnet det seg ikke noe? Kopier meldingen og send den til",
+      "copy": "Kopier meldingen",
+      "copied": "Kopiert!",
+      "bodyIntro": "Hei Veronika!",
+      "langLabel": "Språk"
     }
   },
   "notFound": {

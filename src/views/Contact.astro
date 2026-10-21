@@ -2,15 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import { site, instagramUrl } from '../config/site';
-import { t, url, type Lang } from '../i18n';
+import { t, type Lang } from '../i18n';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const c = t(lang);
 const f = c.contact.form;
-// Submissions go to Netlify Forms (form name "kontakt"). Netlify emails each one to the address set
-// under Project configuration > Notifications > Form submission notifications.
-const FORM_NAME = 'kontakt';
+// The form doesn't send anything itself: on submit it opens the visitor's email app
+// with a ready-written message to Veronika (mailto). Nothing is stored on the website.
 const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)}`;
 ---
 <BaseLayout lang={lang} page="contact" hideMobileBook>
@@ -23,14 +22,16 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)
     <div class="form-col">
       <form
         class="form"
-        name={FORM_NAME}
-        method="POST"
-        action={`${url('contact', lang)}?sendt=1`}
-        data-netlify="true"
-        netlify-honeypot="bot-field"
+        action={`mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)}`}
+        method="post"
+        enctype="text/plain"
         novalidate
         data-contact-form
-        data-sending={f.sending}
+        data-email={site.email}
+        data-subject={f.mailSubject}
+        data-intro={f.bodyIntro}
+        data-lang-label={f.langLabel}
+        data-lang-name={lang === 'no' ? 'Norsk' : 'English'}
       >
         <div class="alert alert--error" role="alert" tabindex="-1" hidden data-summary>
           <p>{f.errors.summary}</p>
@@ -38,14 +39,6 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)
 
         <p class="req-note">{f.requiredNote}</p>
 
-        <input type="hidden" name="form-name" value={FORM_NAME} />
-        <input type="hidden" name="subject" value={`${f.mailSubject} - creativefloe.com (${lang === 'no' ? 'norsk' : 'English'})`} />
-        <input type="hidden" name="language" value={lang === 'no' ? 'Norsk' : 'English'} />
-        <!-- Honeypot: real visitors never see or fill this field -->
-        <div class="hp" aria-hidden="true">
-          <label for="website">Website</label>
-          <input type="text" id="website" name="bot-field" tabindex="-1" autocomplete="off" />
-        </div>
 
         <div class="grid">
           <div class="field">
@@ -96,22 +89,20 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)
           </div>
         </div>
 
-        <div class="alert alert--error" role="alert" hidden data-failure>
-          <p>
-            {f.failure}
-            {' '}<a href={mailto}>{site.email}</a>
-          </p>
-        </div>
-
         <div class="actions">
-          <button class="btn" type="submit" data-submit>{f.submit}<Icon name="arrow-right" /></button>
-          <p class="privacy-note" set:html={f.privacyNote} />
+          <button class="btn" type="submit" data-submit>{f.submit}<Icon name="envelope" /></button>
+          <p class="privacy-note">{f.mailtoNote} <span set:html={f.privacyNote} /></p>
         </div>
       </form>
 
       <div class="success" role="status" hidden data-success tabindex="-1">
         <h2>{f.success.heading}</h2>
         <p>{f.success.text}</p>
+        <p><a class="text-link" href={mailto} data-reopen>{f.reopen}<Icon name="arrow-right" /></a></p>
+        <p class="no-app">
+          {f.noApp} <a href={mailto}>{site.email}</a>.
+          <button type="button" class="copy-btn" data-copy data-copied={f.copied}>{f.copy}</button>
+        </p>
       </div>
     </div>
 
@@ -182,7 +173,6 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)
   .error { margin: 0; font-size: 0.875rem; color: var(--color-error); font-weight: 500; }
 
   .req-note { font-size: 0.875rem; color: var(--color-muted); margin-bottom: 1.5rem; }
-  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
   .alert { padding: 1rem 1.25rem; margin-bottom: 1.5rem; border-left: 3px solid var(--color-error); background: #f6e7e1; color: var(--color-ink); }
   .alert:focus { outline: none; }
@@ -190,9 +180,25 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)
 
   .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; margin-top: 2rem; }
   .actions .btn[disabled] { opacity: 0.65; cursor: progress; }
-  .privacy-note { margin: 0; font-size: 0.875rem; color: var(--color-muted); max-width: 26rem; }
+  .privacy-note { margin: 0; font-size: 0.875rem; color: var(--color-muted); max-width: 28rem; }
+  .no-app { font-size: var(--text-sm); color: var(--color-body); }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    margin-left: 0.25rem;
+    padding: 0.35rem 1rem;
+    border: 1px solid var(--color-ink);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-ink);
+    font: 500 0.875rem/1 var(--font-body);
+    cursor: pointer;
+  }
+  .copy-btn:hover { background: var(--color-ink); color: var(--color-on-ink); }
 
   .success {
+    margin-top: 2.5rem;
     padding: clamp(2rem, 5vw, 3rem);
     background: var(--color-surface);
     border-left: 3px solid var(--color-success);
@@ -234,10 +240,7 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)
   const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
   if (form) {
     const summary = form.querySelector<HTMLElement>('[data-summary]')!;
-    const failure = form.querySelector<HTMLElement>('[data-failure]')!;
     const success = document.querySelector<HTMLElement>('[data-success]')!;
-    const submit = form.querySelector<HTMLButtonElement>('[data-submit]')!;
-    const submitHtml = submit.innerHTML;
     const fields = [...form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('[data-error]')];
 
     const check = (el: (typeof fields)[number]) => {
@@ -255,39 +258,49 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)
       el.addEventListener('input', () => el.getAttribute('aria-invalid') === 'true' && check(el));
     });
 
-    form.addEventListener('submit', async (e) => {
+    // Build a readable email from the filled-in fields, using the visible labels
+    const labelFor = (el: Element) =>
+      (form.querySelector(`label[for="${el.id}"]`)?.textContent ?? el.id).replace('*', '').trim();
+    const compose = () => {
+      const lines = [form.dataset.intro!, ''];
+      const rows = [...form.querySelectorAll<HTMLInputElement | HTMLSelectElement>('input:not([type=hidden]), select')]
+        .filter((el) => el.value.trim())
+        .map((el) => `${labelFor(el)}: ${el.value.trim()}`);
+      lines.push(...rows, `${form.dataset.langLabel}: ${form.dataset.langName}`, '');
+      const msg = form.querySelector<HTMLTextAreaElement>('textarea')!;
+      lines.push(`${labelFor(msg)}:`, msg.value.trim());
+      return lines.join('\n');
+    };
+    let lastBody = '';
+    const mailtoHref = (body: string) =>
+      `mailto:${form.dataset.email}?subject=${encodeURIComponent(form.dataset.subject!)}&body=${encodeURIComponent(body)}`;
+
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
-      failure.hidden = true;
       const invalid = fields.filter((el) => !check(el));
       if (invalid.length) {
         summary.hidden = false;
-
         invalid[0].focus();
         return;
       }
       summary.hidden = true;
+      lastBody = compose();
+      const href = mailtoHref(lastBody);
+      document.querySelectorAll<HTMLAnchorElement>('[data-reopen]').forEach((a) => (a.href = href));
+      success.hidden = false;
+      success.scrollIntoView({ block: 'center' });
+      window.location.href = href;
+    });
 
-      submit.disabled = true;
-      submit.textContent = form.dataset.sending!;
+    const copyBtn = document.querySelector<HTMLButtonElement>('[data-copy]');
+    copyBtn?.addEventListener('click', async () => {
       try {
-        // Netlify Forms accepts a URL-encoded POST to the site root
-        const body = new URLSearchParams(new FormData(form) as unknown as Record<string, string>).toString();
-        const res = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body,
-        });
-        if (!res.ok) throw new Error(String(res.status));
-        form.hidden = true;
-        success.hidden = false;
-        success.focus();
-        success.scrollIntoView({ block: 'center' });
+        await navigator.clipboard.writeText(lastBody || compose());
+        const label = copyBtn.textContent;
+        copyBtn.textContent = copyBtn.dataset.copied!;
+        setTimeout(() => (copyBtn.textContent = label), 2000);
       } catch {
-        failure.hidden = false;
-        failure.scrollIntoView({ block: 'center' });
-      } finally {
-        submit.disabled = false;
-        submit.innerHTML = submitHtml;
+        /* clipboard not available: the email address is still shown */
       }
     });
   }
