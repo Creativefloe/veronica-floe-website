@@ -51,7 +51,7 @@ The result ends up in the `dist/` folder. `npm run preview` shows the built vers
    Name: `Creative Flø editor`, Homepage URL: `https://creativefloe.com`, Callback URL: `https://api.netlify.com/auth/done`.
    Copy the Client ID and generate a Client Secret. In Netlify: *Project configuration → Security → OAuth →
    Install provider → GitHub*, paste both and save.
-6. In `public/admin/config.yml`, `backend.repo` must match the GitHub repository (`username/repository-name`).
+6. In `public/admin/config.yml`, `backend.repo` must match the GitHub repository (currently `Creativefloe/veronica-floe-website`).
 
 ### Cloudflare Pages
 

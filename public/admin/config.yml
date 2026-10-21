@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
 backend:
   name: github
-  repo: creativefloe/creative-floe
+  repo: Creativefloe/veronica-floe-website
   branch: main
 site_url: https://creativefloe.com
 display_url: https://creativefloe.com
