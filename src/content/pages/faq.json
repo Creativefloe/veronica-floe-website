@@ -1,0 +1,152 @@
+{
+  "no": {
+    "heading": "Spørsmål og svar",
+    "intro": "Her finner du svar på det folk oftest lurer på. Finner du ikke svaret? Send meg gjerne en melding.",
+    "items": [
+      {
+        "q": "Kan jeg få bildene uredigert?",
+        "a": "Nei. Du får kun ferdig redigerte bilder i høy oppløsning, levert i et nettgalleri der du kan laste dem ned."
+      },
+      {
+        "q": "Kan jeg bestille en annen pakke?",
+        "a": "Ja, det kan vi avtale. Fortell meg hva du ønsker, så finner vi en løsning."
+      },
+      {
+        "q": "Hva med reiseutgifter?",
+        "a": "Reise i Oslo-området er inkludert. Steder opptil omtrent en time unna går også fint. Ved lengre reiser dekker du reiseutgifter som tog eller fly."
+      },
+      {
+        "q": "Hvordan booker jeg?",
+        "a": "Send en melding via <a href=\"/kontakt/\">kontaktskjemaet</a> eller på Instagram, så finner vi en dato. Fotograferingen er bekreftet når bookingavgiften er betalt."
+      },
+      {
+        "q": "Må jeg betale depositum?",
+        "a": "Ja. En bookingavgift på 30 % reserverer datoen, og resten betales før fotograferingen."
+      },
+      {
+        "q": "Hva om jeg må flytte fotograferingen?",
+        "a": "Gir du beskjed minst 48 timer før, kan du flytte fotograferingen én gang uten ekstra kostnad. Ny dato avtales etter ledig kapasitet. Les hele <a href=\"/priser/#vilkar\">bookingvilkårene</a>."
+      },
+      {
+        "q": "Hva om jeg eller barnet mitt blir syk?",
+        "a": "Det går helt fint. Gi meg beskjed så snart som mulig, så finner vi en ny dato."
+      },
+      {
+        "q": "Hva bør vi ha på oss?",
+        "a": "Noe du føler deg komfortabel og fin i. Naturlige, tidløse farger fungerer best, gjerne antrekk som passer sammen uten å være helt like. Du får gjerne tips til antrekk før fotograferingen."
+      },
+      {
+        "q": "Hvor foregår fotograferingen?",
+        "a": "Som regel ute i naturlige omgivelser. Vi finner et sted som passer årstiden, dere og stemningen dere ønsker."
+      },
+      {
+        "q": "Hva om været er dårlig?",
+        "a": "Vi følger med på værmeldingen. Blir det ikke egnet, finner vi en ny dato uten ekstra kostnad."
+      },
+      {
+        "q": "Hvor lang tid tar en fotografering?",
+        "a": "Omtrent en time. Det kan variere litt etter type fotografering og hvordan dagen blir."
+      },
+      {
+        "q": "Når får vi bildene?",
+        "a": "Du får 5 bilder innen 2 dager, og resten innen 2-3 uker."
+      },
+      {
+        "q": "Kan vi ta med barna?",
+        "a": "Selvfølgelig! Familiefotograferinger er rolige og naturlige, og barna får være seg selv. Ingen trenger å sitte stille og smile hele tiden. ❤️"
+      },
+      {
+        "q": "Vi er ikke vant til å bli fotografert. Går det fint?",
+        "a": "Absolutt. Du trenger ingen erfaring med å posere. Jeg veileder dere med små tips underveis og fanger de naturlige øyeblikkene."
+      },
+      {
+        "q": "Kan vi ta med kjæledyr?",
+        "a": "Ja, så lenge stedet tillater det."
+      },
+      {
+        "q": "Kan vi bruke bildene til fotobøker og utskrifter?",
+        "a": "Ja. Du får bilder i høy oppløsning til personlige utskrifter, fotobøker og lignende."
+      }
+    ],
+    "cta": {
+      "heading": "Har du flere spørsmål?",
+      "text": "Send meg en melding, så svarer jeg så godt jeg kan.",
+      "button": "Send en melding"
+    }
+  },
+  "en": {
+    "heading": "Frequently asked questions",
+    "intro": "Here are answers to the things people ask most often. Can’t find what you are looking for? Feel free to send me a message.",
+    "items": [
+      {
+        "q": "Can I get the photos unedited?",
+        "a": "No. You only receive fully edited high-resolution photos, delivered in an online gallery where you can download them."
+      },
+      {
+        "q": "Can I order a different package?",
+        "a": "Yes, we can arrange that. Tell me what you would like and we will find a solution."
+      },
+      {
+        "q": "What about travel costs?",
+        "a": "Travel within the Oslo area is included. Locations up to about an hour away are also possible. For longer trips, you cover travel costs such as train or flights."
+      },
+      {
+        "q": "How do I book?",
+        "a": "Send a message through the <a href=\"/en/contact/\">contact form</a> or on Instagram, and we will find a date. The session is confirmed once the booking fee is paid."
+      },
+      {
+        "q": "Do I have to pay a deposit?",
+        "a": "Yes. A 30% booking fee reserves your date, and the rest is paid before the session."
+      },
+      {
+        "q": "What if I need to reschedule?",
+        "a": "If you let me know at least 48 hours before, you can reschedule once at no extra cost. The new date depends on availability. Read the full <a href=\"/en/services/#terms\">booking terms</a>."
+      },
+      {
+        "q": "What if I or my child gets sick?",
+        "a": "No problem at all. Let me know as soon as possible and we will find a new date."
+      },
+      {
+        "q": "What should we wear?",
+        "a": "Something you feel comfortable and good in. Natural, timeless colours work best, ideally outfits that go together without matching exactly. I am happy to share outfit tips before the session."
+      },
+      {
+        "q": "Where does the session take place?",
+        "a": "Usually outdoors in natural surroundings. We find a place that suits the season, you, and the mood you want."
+      },
+      {
+        "q": "What if the weather is bad?",
+        "a": "We keep an eye on the forecast. If it doesn’t look suitable, we find a new date at no extra cost."
+      },
+      {
+        "q": "How long is a session?",
+        "a": "About one hour. It can vary a little depending on the type of session and how the day goes."
+      },
+      {
+        "q": "When do we get the photos?",
+        "a": "You get 5 photos within 2 days, and the rest within 2-3 weeks."
+      },
+      {
+        "q": "Can we bring our kids?",
+        "a": "Of course! Family sessions are relaxed and natural, and kids get to be themselves. Nobody has to sit still and smile the whole time. ❤️"
+      },
+      {
+        "q": "We’re not used to being photographed. Is that okay?",
+        "a": "Absolutely. You don’t need any posing experience. I guide you with small tips along the way while capturing the natural moments."
+      },
+      {
+        "q": "Can we bring pets?",
+        "a": "Yes, as long as the location allows it."
+      },
+      {
+        "q": "Can we use the photos for photo books and prints?",
+        "a": "Yes. You receive high-resolution photos for personal prints, photo books and the like."
+      }
+    ],
+    "cta": {
+      "heading": "Still have questions?",
+      "text": "Send me a message and I will do my best to help.",
+      "button": "Send a message"
+    }
+  }
+}

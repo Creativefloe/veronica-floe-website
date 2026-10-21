@@ -1,0 +1,54 @@
+{
+  "no": {
+    "heading": "Om meg",
+    "lead": "Hei, jeg er Veronika, fotografen bak Creative Flø.",
+    "imageAlt": "Portrett av Veronika Flø som smiler, med høstfarger og trær i bakgrunnen",
+    "story": [
+      "Jeg har alltid elsket bilder og kamera. Derfor valgte jeg medier og kommunikasjon på videregående, og der fikk jeg et solid grunnlag å bygge videre på.",
+      "Etter skolen var jeg seks år i misjonstjeneste. Der fotograferte jeg konserter, arrangementer, portretter og livsstil, og etter hvert fikk jeg også ansvar for redigering, arkivering av bilder og sosiale medier. Det lærte meg mye, både om å se mennesker og om å jobbe med bilder fra start til slutt."
+    ],
+    "styleHeading": "Slik fotograferer jeg",
+    "style": [
+      "Stilen min er ekte og naturlig. Jeg vil ta bilder som viser hvem du er, uten maske og uten at du trenger å late som noe.",
+      "Jeg elsker å fange dyrebare øyeblikk som dere kan se tilbake på senere: personligheten, smilene, lettheten og de ulike fasene i livet. Mennesker er fascinerende, og ingenting er morsommere enn å fotografere dem."
+    ],
+    "personalHeading": "Litt mer om meg",
+    "personal": [
+      "Snart mamma til to",
+      "Gift med en sunnmøring",
+      "Opprinnelig fra Ukraina, og har bodd i Norge mesteparten av livet",
+      "Elsker å male, strikke, synge og skape",
+      "Tar bilder bare for moro skyld, og reiser så ofte jeg kan"
+    ],
+    "cta": {
+      "heading": "Jeg gleder meg til å bli kjent med deg",
+      "text": "Fortell meg om dere og hva dere ønsker å ta vare på."
+    }
+  },
+  "en": {
+    "heading": "About me",
+    "lead": "Hi, I’m Veronika, the photographer behind Creative Flø.",
+    "imageAlt": "Portrait of Veronika Flø smiling, with autumn colours and trees in the background",
+    "story": [
+      "I have always loved photos and cameras. That is why I chose Media and Communication in upper secondary school, which gave me a solid foundation to build on.",
+      "After school I spent six years serving in missions. There I photographed concerts, events, portraits and lifestyle, and over time I also took care of editing, organising the photo archive and running social media. It taught me a lot, both about seeing people and about working with photos from start to finish."
+    ],
+    "styleHeading": "How I photograph",
+    "style": [
+      "My style is genuine and natural. I want to take photos that show who you are, without a mask and without having to pretend.",
+      "I love capturing precious moments you can look back on later: personality, smiles, lightness and the different seasons of life. People are fascinating, and nothing is more fun than photographing them."
+    ],
+    "personalHeading": "A little more about me",
+    "personal": [
+      "Soon a mom of two",
+      "Married to a man from Sunnmøre",
+      "Originally from Ukraine, and have lived in Norway most of my life",
+      "Love painting, knitting, singing and making things",
+      "Take photos just for fun, and travel whenever I can"
+    ],
+    "cta": {
+      "heading": "I would love to get to know you",
+      "text": "Tell me about yourselves and what you would like to remember."
+    }
+  }
+}

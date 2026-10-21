@@ -1,0 +1,25 @@
+---
+/**
+ * PLACEHOLDER LOGO: text wordmark "Creative Flø".
+ * To use a real logo: put logo.svg in src/assets/ and replace the <span> below with
+ *   <img src={logo.src} alt="Creative Flø" width="160" height="40" />
+ * after adding `import logo from '../assets/logo.svg';` in this block.
+ */
+interface Props { size?: 'sm' | 'lg'; }
+const { size = 'sm' } = Astro.props;
+---
+<span class:list={["wordmark", `wordmark--${size}`]} translate="no">Creative <em>Flø</em></span>
+
+<style>
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: 0.01em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .wordmark em { font-style: italic; }
+  .wordmark--sm { font-size: 1.6rem; }
+  .wordmark--lg { font-size: clamp(2.2rem, 1.6rem + 2vw, 3rem); }
+</style>

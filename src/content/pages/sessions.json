@@ -1,0 +1,36 @@
+{
+  "no": {
+    "couples": {
+      "name": "Par og forlovelse",
+      "short": "En rolig stund for dere to. Kanskje har dere nettopp forlovet dere, eller kanskje vil dere bare ta vare på hvordan dere har det akkurat nå.",
+      "long": "Vi går en tur, ler litt og glemmer kameraet etter hvert. Perfekt for forlovelse, et nytt kapittel som samboere i ny leilighet, eller bare fordi dere fortjener fine bilder sammen."
+    },
+    "pregnancy": {
+      "name": "Gravid",
+      "short": "Magen vokser, og ventetiden går fortere enn man tror. Vi tar vare på den før den lille kommer.",
+      "long": "En rolig og trygg fotografering, alene eller sammen med partner og søsken. Vi tilpasser tempoet etter hvordan du har det, og finner et sted med fint lys og god plass til pauser."
+    },
+    "family": {
+      "name": "Familie",
+      "short": "Latter, kos og litt kaos. Barna får være barn, og dere får bilder dere vil se på i mange år.",
+      "long": "En vanlig koselig familiedag er ofte det fineste å ta vare på. Ute i naturen eller hjemme hos dere. Ingen trenger å sitte stille og smile hele tiden, de ekte øyeblikkene kommer av seg selv."
+    }
+  },
+  "en": {
+    "couples": {
+      "name": "Couples & engagement",
+      "short": "A slow, easy hour for the two of you. Maybe you just got engaged, or maybe you simply want to remember how you are together right now.",
+      "long": "We go for a walk, laugh a little and forget about the camera along the way. Perfect for an engagement, moving in together, or just because you deserve beautiful photos of the two of you."
+    },
+    "pregnancy": {
+      "name": "Pregnancy",
+      "short": "The bump grows and the waiting goes faster than you think. Let us hold on to it before your little one arrives.",
+      "long": "A calm, relaxed session, on your own or with your partner and siblings. We go at your pace and find a spot with lovely light and plenty of room for breaks."
+    },
+    "family": {
+      "name": "Family",
+      "short": "Laughter, cuddles and a little chaos. Kids get to be kids, and you get photos you will love for years.",
+      "long": "An ordinary, cozy family day is often the most precious thing to keep. Out in nature or at home. Nobody has to sit still and smile the whole time, the real moments come on their own."
+    }
+  }
+}

@@ -1,0 +1,262 @@
+---
+import { Picture, getImage } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { t, type Lang } from '../i18n';
+import { getPhotos, categories } from '../lib/portfolio';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const c = t(lang);
+
+const photos = await Promise.all(
+  getPhotos(lang).map(async (p) => ({
+    ...p,
+    full: (await getImage({ src: p.src, width: Math.min(2000, p.src.width), format: 'webp', quality: 82 })).src,
+  })),
+);
+// Only show filter buttons for categories that have photos
+const used = categories.filter((k) => photos.some((p) => p.category === k));
+const filters = [{ key: 'all', label: c.portfolio.filters.all }, ...used.map((k) => ({ key: k, label: c.portfolio.filters[k] }))];
+---
+<BaseLayout lang={lang} page="portfolio">
+  <section class="container page-head">
+    <h1>{c.portfolio.heading}</h1>
+    <p class="lead">{c.portfolio.intro}</p>
+  </section>
+
+  <section class="container gallery-wrap" data-gallery>
+    <div class="filters" role="group" aria-label={c.portfolio.filterLabel}>
+      {filters.map((f, i) => (
+        <button type="button" class="chip" data-filter={f.key} aria-pressed={i === 0 ? 'true' : 'false'}>
+          {f.label}
+        </button>
+      ))}
+    </div>
+    <p class="visually-hidden" aria-live="polite" data-count data-label={c.portfolio.count}></p>
+
+    <ul class="gallery" role="list">
+      {photos.map((p, i) => (
+        <li class="g-item" data-category={p.category}>
+          <button
+            type="button"
+            class="g-btn photo"
+            data-full={p.full}
+            data-alt={p.alt}
+            aria-label={p.alt}
+          >
+            <Picture
+              src={p.src}
+              alt=""
+              widths={[400, 640, 960]}
+              sizes="(min-width: 1100px) 33vw, 50vw"
+              formats={['webp']}
+              loading={i < 3 ? 'eager' : 'lazy'}
+            />
+          </button>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <dialog class="lightbox" aria-label={c.portfolio.lightbox.label} data-lightbox>
+    <figure class="lb-figure">
+      <img class="lb-img" alt="" data-lb-img />
+      <figcaption class="lb-caption">
+        <span data-lb-alt></span>
+        <span class="lb-count" data-lb-count data-of={c.portfolio.lightbox.of}></span>
+      </figcaption>
+    </figure>
+    <button type="button" class="lb-btn lb-close" data-lb-close aria-label={c.portfolio.lightbox.close}><Icon name="x" size={26} /></button>
+    <button type="button" class="lb-btn lb-prev" data-lb-prev aria-label={c.portfolio.lightbox.prev}><Icon name="caret-left" size={28} /></button>
+    <button type="button" class="lb-btn lb-next" data-lb-next aria-label={c.portfolio.lightbox.next}><Icon name="caret-right" size={28} /></button>
+  </dialog>
+
+  <CtaBand lang={lang} heading={c.portfolio.cta.heading} text={c.portfolio.cta.text} />
+</BaseLayout>
+
+<style>
+  .gallery-wrap { padding-bottom: var(--section); }
+
+  .filters { display: none; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  :global(.js) .filters { display: flex; }
+  .chip {
+    min-height: 2.75rem;
+    padding: 0.5rem 1.25rem;
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-body);
+    font: 400 var(--text-sm)/1 var(--font-body);
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: background-color 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
+  }
+  .chip:hover { border-color: var(--color-ink); color: var(--color-ink); }
+  .chip[aria-pressed='true'] { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-on-ink); }
+
+  .gallery {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    columns: 3;
+    column-gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  }
+  .g-item { break-inside: avoid; margin-bottom: clamp(0.75rem, 1.5vw, 1.25rem); animation: appear 0.6s var(--ease); }
+  .g-item[hidden] { display: none; }
+  .g-btn {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    cursor: zoom-in;
+  }
+  .g-btn :global(img) { transition: transform 1s var(--ease), opacity 0.4s var(--ease); }
+  .g-btn:hover :global(img) { transform: scale(1.025); opacity: 0.92; }
+  @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+
+  @media (max-width: 1100px) { .gallery { columns: 2; } }
+  @media (max-width: 640px) { .gallery { columns: 2; column-gap: 0.6rem; } .g-item { margin-bottom: 0.6rem; } }
+
+  /* Lightbox */
+  .lightbox {
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: rgb(28 26 23 / 0.96);
+    color: var(--color-on-ink);
+    overscroll-behavior: contain;
+  }
+  .lightbox::backdrop { background: rgb(28 26 23 / 0.6); }
+  .lightbox[open] { display: grid; place-items: center; animation: appear 0.3s var(--ease); }
+  .lb-figure {
+    margin: 0;
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    padding: 4.5rem clamp(1rem, 6vw, 5.5rem) 1.5rem;
+    max-height: 100dvh;
+  }
+  .lb-img {
+    max-width: 100%;
+    max-height: calc(100dvh - 9rem);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  .lb-caption {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 60rem;
+    font-size: var(--text-sm);
+    color: rgb(247 243 236 / 0.8);
+  }
+  .lb-count { white-space: nowrap; }
+  .lb-btn {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: rgb(247 243 236 / 0.08);
+    color: var(--color-on-ink);
+    cursor: pointer;
+    transition: background-color 0.2s var(--ease);
+  }
+  .lb-btn:hover { background: rgb(247 243 236 / 0.2); }
+  .lb-btn:focus-visible { outline-color: var(--color-on-ink); }
+  .lb-close { top: 1rem; right: 1rem; }
+  .lb-prev { left: 1rem; top: 50%; translate: 0 -50%; }
+  .lb-next { right: 1rem; top: 50%; translate: 0 -50%; }
+  @media (max-width: 640px) {
+    .lb-prev, .lb-next { top: auto; bottom: 1rem; translate: none; }
+    .lb-figure { padding-inline: 0.75rem; padding-bottom: 5rem; }
+    .lb-caption { padding-inline: 0.5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .g-item, .lightbox[open] { animation: none; }
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-gallery]');
+  const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+
+  if (root && dialog) {
+    const chips = [...root.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+    const items = [...root.querySelectorAll<HTMLLIElement>('.g-item')];
+    const live = root.querySelector<HTMLElement>('[data-count]')!;
+    const img = dialog.querySelector<HTMLImageElement>('[data-lb-img]')!;
+    const altEl = dialog.querySelector<HTMLElement>('[data-lb-alt]')!;
+    const countEl = dialog.querySelector<HTMLElement>('[data-lb-count]')!;
+    let visible = items;
+    let index = 0;
+    let opener: HTMLElement | null = null;
+
+    const applyFilter = (key: string) => {
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.filter === key)));
+      items.forEach((li) => (li.hidden = key !== 'all' && li.dataset.category !== key));
+      visible = items.filter((li) => !li.hidden);
+      live.textContent = `${visible.length} ${live.dataset.label}`;
+      const u = new URL(location.href);
+      key === 'all' ? u.searchParams.delete('kategori') : u.searchParams.set('kategori', key);
+      history.replaceState(null, '', u);
+    };
+    chips.forEach((chip) => chip.addEventListener('click', () => applyFilter(chip.dataset.filter!)));
+    const initial = new URL(location.href).searchParams.get('kategori');
+    if (initial && chips.some((c) => c.dataset.filter === initial)) applyFilter(initial);
+
+    const show = (i: number) => {
+      index = (i + visible.length) % visible.length;
+      const btn = visible[index].querySelector<HTMLButtonElement>('.g-btn')!;
+      img.src = btn.dataset.full!;
+      img.alt = btn.dataset.alt!;
+      altEl.textContent = btn.dataset.alt!;
+      countEl.textContent = `${index + 1} ${countEl.dataset.of} ${visible.length}`;
+      // Preload neighbours for smooth browsing
+      [index + 1, index - 1].forEach((n) => {
+        const b = visible[(n + visible.length) % visible.length]?.querySelector<HTMLButtonElement>('.g-btn');
+        if (b) new Image().src = b.dataset.full!;
+      });
+    };
+
+    items.forEach((li) =>
+      li.querySelector('.g-btn')!.addEventListener('click', (e) => {
+        opener = e.currentTarget as HTMLElement;
+        show(visible.indexOf(li));
+        dialog.showModal();
+        document.documentElement.style.overflow = 'hidden';
+      }),
+    );
+
+    dialog.querySelector('[data-lb-close]')!.addEventListener('click', () => dialog.close());
+    dialog.querySelector('[data-lb-prev]')!.addEventListener('click', () => show(index - 1));
+    dialog.querySelector('[data-lb-next]')!.addEventListener('click', () => show(index + 1));
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') show(index + 1);
+      if (e.key === 'ArrowLeft') show(index - 1);
+    });
+    dialog.addEventListener('close', () => {
+      document.documentElement.style.overflow = '';
+      opener?.focus();
+    });
+
+    // Swipe on touch screens
+    let startX = 0;
+    dialog.addEventListener('touchstart', (e) => (startX = e.touches[0].clientX), { passive: true });
+    dialog.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) show(index + (dx < 0 ? 1 : -1));
+    });
+  }
+</script>

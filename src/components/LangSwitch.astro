@@ -1,0 +1,35 @@
+---
+import { t, url, htmlLang, type Lang, type RouteKey } from '../i18n';
+
+interface Props { lang: Lang; page: RouteKey; compact?: boolean; }
+const { lang, page, compact = false } = Astro.props;
+const other: Lang = lang === 'no' ? 'en' : 'no';
+const c = t(lang);
+---
+<a
+  class:list={['lang-switch', { compact }]}
+  href={url(page, other)}
+  hreflang={htmlLang[other]}
+  lang={htmlLang[other]}
+  aria-label={c.nav.switchAria}
+>
+  {compact ? other.toUpperCase() : c.nav.switchLabel}
+</a>
+
+<style>
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-inline: 0.25rem;
+    color: var(--color-ink);
+    font-size: var(--text-sm);
+    letter-spacing: 0.04em;
+    text-decoration: underline;
+    text-decoration-color: var(--color-hairline);
+    text-underline-offset: 0.35em;
+    white-space: nowrap;
+  }
+  .lang-switch:hover { text-decoration-color: var(--color-ink); color: var(--color-ink); }
+  .compact { font-weight: 500; letter-spacing: 0.1em; padding-inline: 0.6rem; }
+</style>

@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { t, type Lang } from '../i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const c = t(lang);
+
+const stripHtml = (s: string) => s.replace(/<[^>]+>/g, '');
+const jsonLd = [{
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: c.faq.items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: stripHtml(item.a) },
+  })),
+}];
+---
+<BaseLayout lang={lang} page="faq" jsonLd={jsonLd}>
+  <section class="container page-head">
+    <h1>{c.faq.heading}</h1>
+    <p class="lead">{c.faq.intro}</p>
+  </section>
+
+  <section class="container faq">
+    {c.faq.items.map((item) => (
+      <details class="item">
+        <summary>
+          <span>{item.q}</span>
+          <Icon name="plus" size={22} class="toggle" />
+        </summary>
+        <div class="answer"><p set:html={item.a} /></div>
+      </details>
+    ))}
+  </section>
+
+  <CtaBand lang={lang} heading={c.faq.cta.heading} text={c.faq.cta.text} button={c.faq.cta.button} />
+</BaseLayout>
+
+<style>
+  .faq { max-width: 52rem; padding-bottom: var(--section); }
+  .item { border-bottom: 1px solid var(--color-hairline); }
+  .item:first-child { border-top: 1px solid var(--color-hairline); }
+  summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.35rem 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.6rem);
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--color-ink);
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { color: var(--color-accent-strong); }
+  summary :global(.toggle) {
+    flex: none;
+    color: var(--color-accent);
+    transition: transform 0.3s var(--ease);
+  }
+  .item[open] summary :global(.toggle) { transform: rotate(45deg); }
+  .answer { padding: 0 3rem 1.6rem 0; max-width: 42rem; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .item[open] .answer { animation: open 0.35s var(--ease); }
+  }
+  @keyframes open { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+</style>

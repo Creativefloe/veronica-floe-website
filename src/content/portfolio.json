@@ -1,0 +1,256 @@
+{
+  "photos": [
+    {
+      "image": "/src/assets/images/photos/par-ler-syrin.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Par ler til hverandre foran grønne blader og lilla syrin",
+        "en": "Couple laughing together in front of green leaves and purple lilacs"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/gravid-tur-park.jpg",
+      "category": "pregnancy",
+      "featured": false,
+      "alt": {
+        "no": "Gravid kvinne ser ned på magen mens paret går hånd i hånd i parken",
+        "en": "Pregnant woman looking down at her belly as the couple walks hand in hand in the park"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/familie-pappa-baby.jpg",
+      "category": "family",
+      "featured": false,
+      "alt": {
+        "no": "Smilende mann holder en baby i høstsolen",
+        "en": "Smiling man holding a baby in the autumn sun"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-paraply.jpg",
+      "category": "couples",
+      "featured": true,
+      "alt": {
+        "no": "Kvinne smiler mens partneren holder rundt henne under en paraply",
+        "en": "Woman smiling as her partner holds her under an umbrella"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/gravid-syrin.jpg",
+      "category": "pregnancy",
+      "featured": true,
+      "alt": {
+        "no": "Gravid kvinne i rød strikkejakke og partneren hennes står hånd i hånd foran en blomstrende syrinbusk",
+        "en": "Pregnant woman in a red cardigan and her partner holding hands in front of a blooming lilac bush"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/familie-baby-host.jpg",
+      "category": "family",
+      "featured": true,
+      "alt": {
+        "no": "Smilende kvinne holder en baby i en høstfarget park",
+        "en": "Smiling woman holding a baby in an autumn park"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-panne-mot-panne.jpg",
+      "category": "couples",
+      "featured": true,
+      "alt": {
+        "no": "Par lener pannene mot hverandre under høye pinjetrær",
+        "en": "Couple leaning their foreheads together under tall pine trees"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/gravid-hender-ring.jpg",
+      "category": "pregnancy",
+      "featured": true,
+      "alt": {
+        "no": "Svart-hvitt bilde av hender med giftering som holder rundt en gravid mage",
+        "en": "Black-and-white photo of hands with a wedding ring cradling a pregnant belly"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-parkbenk.jpg",
+      "category": "couples",
+      "featured": true,
+      "alt": {
+        "no": "Ung mann lener seg over partneren sin på en parkbenk, og begge smiler",
+        "en": "Young man leaning over his partner on a park bench, both smiling"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-benk.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Par sitter tett sammen på en steinbenk foran en rosa husvegg og smiler til hverandre",
+        "en": "Couple sitting close on a stone bench in front of a pink wall, smiling at each other"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/gravid-mage-naerbilde.jpg",
+      "category": "pregnancy",
+      "featured": false,
+      "alt": {
+        "no": "Nærbilde av hender rundt en gravid mage, med rød strikkejakke og hvit topp",
+        "en": "Close-up of hands around a pregnant belly, with a red knit cardigan and white top"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/familie-babyhand.jpg",
+      "category": "family",
+      "featured": false,
+      "alt": {
+        "no": "Liten babyhånd som holder rundt en voksen finger",
+        "en": "A tiny baby hand holding an adult’s finger"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-paraply-alle.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Par under en paraply i en allé av høye pinjetrær",
+        "en": "Couple under an umbrella in an avenue of tall pine trees"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/gravid-tur-alle.jpg",
+      "category": "pregnancy",
+      "featured": false,
+      "alt": {
+        "no": "Vordende foreldre går tur hånd i hånd langs en trekledd sti",
+        "en": "Parents-to-be walking hand in hand along a tree-lined path"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-naerbilde.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Nærbilde av et par som ler tett sammen og holder hender",
+        "en": "Close-up of a couple laughing close together and holding hands"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-hand-i-hand.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Par går hånd i hånd bort fra kameraet gjennom en park i byen",
+        "en": "Couple walking hand in hand away from the camera through a city park"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/gravid-hender-sort-hvitt.jpg",
+      "category": "pregnancy",
+      "featured": false,
+      "alt": {
+        "no": "Svart-hvitt nærbilde av to par hender på en gravid mage",
+        "en": "Black-and-white close-up of two pairs of hands on a pregnant belly"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-trestamme.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Par sitter panne mot panne på en trestamme i parken",
+        "en": "Couple sitting forehead to forehead on a tree trunk in the park"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-klem-loft.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Mannen løfter kvinnen opp i en klem, i bevegelse og full av glede",
+        "en": "Man lifting the woman into a hug, full of movement and joy"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/gravid-blikk-sort-hvitt.jpg",
+      "category": "pregnancy",
+      "featured": false,
+      "alt": {
+        "no": "Svart-hvitt bilde av vordende foreldre som smiler til hverandre under trærne",
+        "en": "Black-and-white photo of parents-to-be smiling at each other under the trees"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-sti.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Kvinnen ser tilbake mot kameraet mens hun leder partneren bortover stien",
+        "en": "Woman looking back at the camera as she leads her partner down the path"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-tregjerde.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Par står tett inntil hverandre ved et tregjerde og ler",
+        "en": "Couple standing close together by a wooden fence, laughing"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/gravid-klem-park.jpg",
+      "category": "pregnancy",
+      "featured": false,
+      "alt": {
+        "no": "Partneren holder rundt den gravide kvinnen bakfra i en grønn park",
+        "en": "Partner hugging the pregnant woman from behind in a green park"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-kyss-tre.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Mannen kysser kvinnen på kinnet under et stort tre i byparken",
+        "en": "Man kissing the woman on the cheek under a large tree in a city park"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-piletre.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Par klemmer under et piletre, sett bakfra",
+        "en": "Couple hugging under a willow tree, seen from behind"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-loper.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Par løper lekent over gresset i parken",
+        "en": "Couple running playfully across the grass in the park"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-pinjesti.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Par går hånd i hånd langs en gangvei med pinjetrær",
+        "en": "Couple walking hand in hand along a path lined with pine trees"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-trebro.jpg",
+      "category": "couples",
+      "featured": false,
+      "alt": {
+        "no": "Par står på en trebro over en rolig elv, sett på avstand",
+        "en": "Couple standing on a wooden bridge over a calm river, seen from a distance"
+      }
+    }
+  ]
+}

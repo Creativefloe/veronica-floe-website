@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+import { t, url, type Lang } from '../i18n';
+
+interface Props { lang: Lang; heading: string; text: string; button?: string; }
+const { lang, heading, text, button } = Astro.props;
+const c = t(lang);
+---
+<section class="cta" data-hide-mobile-book>
+  <div class="container inner reveal">
+    <h2>{heading}</h2>
+    <p>{text}</p>
+    <a class="btn" href={url('contact', lang)}>{button ?? c.common.bookCta}<Icon name="arrow-right" /></a>
+  </div>
+</section>
+
+<style>
+  .cta {
+    padding-block: var(--section);
+    border-top: 1px solid var(--color-hairline);
+  }
+  .inner { text-align: center; max-width: 44rem; }
+  h2 { margin-bottom: 0.4em; }
+  p { font-size: var(--text-lg); margin-bottom: 2rem; }
+</style>

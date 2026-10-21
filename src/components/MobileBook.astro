@@ -1,0 +1,41 @@
+---
+import { t, url, type Lang } from '../i18n';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const c = t(lang);
+---
+<div class="mobile-book" data-mobile-book>
+  <a class="btn" href={url('contact', lang)}>{c.common.bookCta}</a>
+</div>
+
+<style>
+  .mobile-book { display: none; }
+  @media (max-width: 760px) {
+    :global(:root) { --mobile-bar: 4.75rem; }
+    .mobile-book {
+      display: block;
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 40;
+      padding: 0.75rem var(--gutter) calc(0.75rem + env(safe-area-inset-bottom));
+      background: linear-gradient(to top, var(--color-canvas) 65%, transparent);
+      transition: transform 0.35s var(--ease), opacity 0.35s var(--ease);
+    }
+    .mobile-book.is-hidden { transform: translateY(110%); opacity: 0; }
+    .mobile-book .btn { width: 100%; box-shadow: 0 6px 24px -10px rgb(45 42 38 / 0.45); }
+  }
+</style>
+
+<script>
+  // Hide the sticky Book button while the contact form or the page's own CTA is on screen
+  const bar = document.querySelector<HTMLElement>('[data-mobile-book]');
+  const targets = document.querySelectorAll('[data-hide-mobile-book]');
+  if (bar && targets.length) {
+    const visible = new Set<Element>();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => (e.isIntersecting ? visible.add(e.target) : visible.delete(e.target)));
+      bar.classList.toggle('is-hidden', visible.size > 0);
+    });
+    targets.forEach((el) => io.observe(el));
+  }
+</script>

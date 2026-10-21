@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { t, url } from '../i18n';
+const no = t('no');
+const en = t('en');
+---
+<BaseLayout lang="no" page="home" metaKey="notFound" noindex>
+  <section class="container nf">
+    <h1>{no.notFound.heading}</h1>
+    <p class="lead">{no.notFound.text}</p>
+    <p><a class="btn" href={url('home', 'no')}>{no.notFound.cta}</a></p>
+    <div lang="en" class="en">
+      <p class="lead">{en.notFound.heading}. {en.notFound.text}</p>
+      <p><a class="text-link" href={url('home', 'en')}>{en.notFound.cta}</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf { padding-block: var(--section); max-width: 44rem; }
+  .en { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-hairline); }
+</style>

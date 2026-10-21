@@ -1,0 +1,294 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { site, instagramUrl } from '../config/site';
+import { t, type Lang } from '../i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const c = t(lang);
+const f = c.contact.form;
+const endpoint = site.formEndpoint;
+const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)}`;
+---
+<BaseLayout lang={lang} page="contact" hideMobileBook>
+  <section class="container page-head">
+    <h1>{c.contact.heading}</h1>
+    <p class="lead">{c.contact.intro}</p>
+  </section>
+
+  <section class="container contact">
+    <div class="form-col">
+      <form
+        class="form"
+        method="POST"
+        action={endpoint || undefined}
+        novalidate
+        data-contact-form
+        data-endpoint={endpoint}
+        data-sending={f.sending}
+      >
+        <div class="alert alert--error" role="alert" tabindex="-1" hidden data-summary>
+          <p>{f.errors.summary}</p>
+        </div>
+
+        <p class="req-note">{f.requiredNote}</p>
+
+        <input type="hidden" name="_subject" value={`${f.mailSubject} (${lang.toUpperCase()})`} />
+        <input type="hidden" name="language" value={lang === 'no' ? 'Norsk' : 'English'} />
+        <!-- Honeypot: real visitors never see or fill this field -->
+        <div class="hp" aria-hidden="true">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="grid">
+          <div class="field">
+            <label for="name">{f.name} <span aria-hidden="true">*</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-error" data-error={f.errors.name} />
+            <p class="error" id="name-error" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="email">{f.email} <span aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" required aria-describedby="email-error" data-error={f.errors.email} />
+            <p class="error" id="email-error" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="session">{f.sessionType} <span aria-hidden="true">*</span></label>
+            <select id="session" name="session_type" required aria-describedby="session-error" data-error={f.errors.sessionType}>
+              <option value="">{f.sessionTypeChoose}</option>
+              {Object.entries(f.sessionTypes).map(([, label]) => <option value={label}>{label}</option>)}
+            </select>
+            <p class="error" id="session-error" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="date">{f.date}</label>
+            <input id="date" name="preferred_date" type="text" autocomplete="off" aria-describedby="date-hint" />
+            <p class="hint" id="date-hint">{f.dateHint}</p>
+          </div>
+
+          <div class="field">
+            <label for="people">{f.people}</label>
+            <input id="people" name="people" type="number" inputmode="numeric" min="1" max="30" aria-describedby="people-hint people-error" data-error={f.errors.people} />
+            <p class="hint" id="people-hint">{f.peopleHint}</p>
+            <p class="error" id="people-error" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="location">{f.location}</label>
+            <input id="location" name="location" type="text" autocomplete="off" aria-describedby="location-hint" />
+            <p class="hint" id="location-hint">{f.locationHint}</p>
+          </div>
+
+          <div class="field field--full">
+            <label for="message">{f.message} <span aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" rows="6" required aria-describedby="message-hint message-error" data-error={f.errors.message}></textarea>
+            <p class="hint" id="message-hint">{f.messageHint}</p>
+            <p class="error" id="message-error" hidden></p>
+          </div>
+        </div>
+
+        <div class="alert alert--error" role="alert" hidden data-failure>
+          <p>
+            {endpoint ? f.failure : f.notConfigured}
+            {' '}<a href={mailto}>{site.email}</a>
+          </p>
+        </div>
+
+        <div class="actions">
+          <button class="btn" type="submit" data-submit>{f.submit}<Icon name="arrow-right" /></button>
+          <p class="privacy-note" set:html={f.privacyNote} />
+        </div>
+      </form>
+
+      <div class="success" role="status" hidden data-success tabindex="-1">
+        <h2>{f.success.heading}</h2>
+        <p>{f.success.text}</p>
+      </div>
+    </div>
+
+    <aside class="aside">
+      <p class="response">{c.contact.responseNote}</p>
+      <h2 class="aside-h">{c.contact.otherWays}</h2>
+      <dl>
+        <div>
+          <dt>{c.contact.emailLabel}</dt>
+          <dd><a href={mailto}><Icon name="envelope" />{site.email}</a></dd>
+        </div>
+        <div>
+          <dt>{c.contact.instagramLabel}</dt>
+          <dd><a href={instagramUrl} rel="noopener" target="_blank"><Icon name="instagram" />@{site.instagram}</a></dd>
+        </div>
+        <div>
+          <dt>{c.contact.locationLabel}</dt>
+          <dd><span><Icon name="map-pin" />{c.contact.location}</span></dd>
+        </div>
+      </dl>
+      <p class="mailto">{f.mailtoFallback} <a href={mailto}>{site.email}</a>.</p>
+    </aside>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    gap: clamp(3rem, 7vw, 7rem);
+    align-items: start;
+    padding-bottom: var(--section);
+  }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 1.75rem; }
+  .field { display: grid; gap: 0.4rem; align-content: start; }
+  .field--full { grid-column: 1 / -1; }
+  label { font-weight: 500; color: var(--color-ink); font-size: var(--text-sm); letter-spacing: 0.02em; }
+  label span { color: var(--color-accent); }
+  input, select, textarea {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #8f8578;
+    border-radius: var(--radius-field);
+    background: #fffdf9;
+    color: var(--color-ink);
+    font: 400 1rem/1.5 var(--font-body);
+    transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  }
+  textarea { resize: vertical; min-height: 9rem; }
+  select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--color-ink) 50%), linear-gradient(135deg, var(--color-ink) 50%, transparent 50%);
+    background-position: calc(100% - 1.15rem) 55%, calc(100% - 0.8rem) 55%;
+    background-size: 0.35rem 0.35rem;
+    background-repeat: no-repeat;
+    padding-right: 2.5rem;
+  }
+  input:hover, select:hover, textarea:hover { border-color: var(--color-muted); }
+  input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 25%, transparent);
+  }
+  [aria-invalid='true'] { border-color: var(--color-error); }
+  .hint { margin: 0; font-size: 0.875rem; color: var(--color-muted); }
+  .error { margin: 0; font-size: 0.875rem; color: var(--color-error); font-weight: 500; }
+
+  .req-note { font-size: 0.875rem; color: var(--color-muted); margin-bottom: 1.5rem; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .alert { padding: 1rem 1.25rem; margin-bottom: 1.5rem; border-left: 3px solid var(--color-error); background: #f6e7e1; color: var(--color-ink); }
+  .alert:focus { outline: none; }
+  .alert a { color: var(--color-error); }
+
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; margin-top: 2rem; }
+  .actions .btn[disabled] { opacity: 0.65; cursor: progress; }
+  .privacy-note { margin: 0; font-size: 0.875rem; color: var(--color-muted); max-width: 26rem; }
+
+  .success {
+    padding: clamp(2rem, 5vw, 3rem);
+    background: var(--color-surface);
+    border-left: 3px solid var(--color-success);
+  }
+  .success:focus { outline: none; }
+
+  .aside { position: sticky; top: calc(var(--header-h) + 2rem); }
+  .response {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.45rem;
+    line-height: 1.35;
+    color: var(--color-ink);
+    margin-bottom: 2.5rem;
+  }
+  .aside-h { font-size: 1.5rem; }
+  .aside dl { margin: 0 0 2rem; display: grid; gap: 1.25rem; }
+  .aside dt { font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-muted); }
+  .aside dd { margin: 0.2rem 0 0; }
+  .aside dd a, .aside dd span {
+    display: inline-flex; align-items: center; gap: 0.6rem; min-height: 2.5rem;
+    color: var(--color-ink); text-decoration: none; overflow-wrap: anywhere;
+  }
+  .aside dd a:hover { text-decoration: underline; }
+  .aside dd :global(svg) { flex: none; color: var(--color-accent); }
+  .mailto { font-size: var(--text-sm); color: var(--color-muted); }
+
+  @media (max-width: 900px) {
+    .contact { grid-template-columns: 1fr; }
+    .aside { position: static; }
+  }
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+    .actions .btn { width: 100%; }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  if (form) {
+    const summary = form.querySelector<HTMLElement>('[data-summary]')!;
+    const failure = form.querySelector<HTMLElement>('[data-failure]')!;
+    const success = document.querySelector<HTMLElement>('[data-success]')!;
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const submitHtml = submit.innerHTML;
+    const fields = [...form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('[data-error]')];
+
+    const check = (el: (typeof fields)[number]) => {
+      el.value = el.value.trimStart();
+      const ok = el.checkValidity() && (!el.required || el.value.trim() !== '');
+      const msg = document.getElementById(`${el.id}-error`)!;
+      el.setAttribute('aria-invalid', String(!ok));
+      msg.hidden = ok;
+      msg.textContent = ok ? '' : el.dataset.error!;
+      return ok;
+    };
+
+    fields.forEach((el) => {
+      el.addEventListener('blur', () => el.getAttribute('aria-invalid') && check(el));
+      el.addEventListener('input', () => el.getAttribute('aria-invalid') === 'true' && check(el));
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      failure.hidden = true;
+      const invalid = fields.filter((el) => !check(el));
+      if (invalid.length) {
+        summary.hidden = false;
+
+        invalid[0].focus();
+        return;
+      }
+      summary.hidden = true;
+
+      const endpoint = form.dataset.endpoint;
+      if (!endpoint) {
+        failure.hidden = false;
+        failure.scrollIntoView({ block: 'center' });
+        return;
+      }
+
+      submit.disabled = true;
+      submit.textContent = form.dataset.sending!;
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.hidden = true;
+        success.hidden = false;
+        success.focus();
+        success.scrollIntoView({ block: 'center' });
+      } catch {
+        failure.hidden = false;
+        failure.scrollIntoView({ block: 'center' });
+      } finally {
+        submit.disabled = false;
+        submit.innerHTML = submitHtml;
+      }
+    });
+  }
+</script>

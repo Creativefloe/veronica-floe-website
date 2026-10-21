@@ -1,0 +1,28 @@
+{
+  "slides": [
+    {
+      "image": "/src/assets/images/photos/par-benk.jpg",
+      "position": "50% 62%",
+      "alt": {
+        "no": "Par sitter tett sammen på en steinbenk foran en rosa husvegg og smiler til hverandre",
+        "en": "Couple sitting close on a stone bench in front of a pink wall, smiling at each other"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/familie-baby-host.jpg",
+      "position": "50% 20%",
+      "alt": {
+        "no": "Smilende kvinne holder en baby i en høstfarget park",
+        "en": "Smiling woman holding a baby in an autumn park"
+      }
+    },
+    {
+      "image": "/src/assets/images/photos/par-paraply-alle.jpg",
+      "position": "55% 70%",
+      "alt": {
+        "no": "Par under en paraply i en allé av høye pinjetrær",
+        "en": "Couple under an umbrella in an avenue of tall pine trees"
+      }
+    }
+  ]
+}

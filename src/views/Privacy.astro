@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { t, type Lang } from '../i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const c = t(lang);
+---
+<BaseLayout lang={lang} page="privacy">
+  <section class="container page-head">
+    <h1>{c.privacy.heading}</h1>
+    <p class="muted">{c.privacy.updated}</p>
+    <p class="draft" role="note">{c.privacy.draftNotice}</p>
+  </section>
+
+  <section class="container prose policy">
+    {c.privacy.sections.map((s) => (
+      <>
+        <h2>{s.heading}</h2>
+        {s.body.map((p) => <p set:html={p} />)}
+      </>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .muted { color: var(--color-muted); font-size: var(--text-sm); }
+  .draft {
+    max-width: var(--max-text);
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    border-left: 3px solid var(--color-error);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-size: var(--text-sm);
+  }
+  .policy { padding-bottom: var(--section); }
+  .policy h2:first-child { margin-top: 0; }
+</style>

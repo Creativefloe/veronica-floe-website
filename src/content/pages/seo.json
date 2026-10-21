@@ -1,0 +1,78 @@
+{
+  "no": {
+    "siteName": "Creative Flø",
+    "defaultDescription": "Creative Flø er Veronika Flø, fotograf i Oslo. Naturlige og ekte bilder av par, gravide og familier.",
+    "pages": {
+      "home": {
+        "title": "Creative Flø | Fotograf i Oslo for par, gravide og familier",
+        "description": "Ekte og naturlige bilder av par, gravide og familier i og rundt Oslo. Fotograf Veronika Flø fanger de små og store øyeblikkene i livet."
+      },
+      "portfolio": {
+        "title": "Portefølje | Creative Flø",
+        "description": "Se bilder fra fotograferinger med par, gravide, familier og portretter i Oslo-området."
+      },
+      "about": {
+        "title": "Om meg | Creative Flø",
+        "description": "Bli kjent med Veronika Flø, fotografen bak Creative Flø. Naturlige bilder som viser hvem du er."
+      },
+      "services": {
+        "title": "Priser og fotografering | Creative Flø",
+        "description": "Priser for par- og forlovelsesfotografering, gravidfotografering og familiefotografering i Oslo. Se hva som er inkludert og hvordan du booker."
+      },
+      "faq": {
+        "title": "Spørsmål og svar | Creative Flø",
+        "description": "Svar på vanlige spørsmål om fotografering, levering av bilder, booking, flytting og vær."
+      },
+      "contact": {
+        "title": "Kontakt og booking | Creative Flø",
+        "description": "Book en fotografering eller still et spørsmål. Send en forespørsel, så svarer jeg deg på e-post."
+      },
+      "privacy": {
+        "title": "Personvernerklæring | Creative Flø",
+        "description": "Slik behandler Creative Flø personopplysninger."
+      },
+      "notFound": {
+        "title": "Siden finnes ikke | Creative Flø",
+        "description": "Siden du lette etter finnes ikke."
+      }
+    }
+  },
+  "en": {
+    "siteName": "Creative Flø",
+    "defaultDescription": "Creative Flø is Veronika Flø, a photographer in Oslo. Natural, genuine photos of couples, pregnancy and families.",
+    "pages": {
+      "home": {
+        "title": "Creative Flø | Oslo photographer for couples, pregnancy and families",
+        "description": "Genuine, natural photos of couples, pregnancy and families in and around Oslo. Photographer Veronika Flø captures the small and big moments of life."
+      },
+      "portfolio": {
+        "title": "Portfolio | Creative Flø",
+        "description": "Browse photos from couples, pregnancy, family and portrait sessions in the Oslo area."
+      },
+      "about": {
+        "title": "About me | Creative Flø",
+        "description": "Get to know Veronika Flø, the photographer behind Creative Flø. Natural photos that show who you are."
+      },
+      "services": {
+        "title": "Sessions and pricing | Creative Flø",
+        "description": "Prices for couples and engagement, pregnancy and family photo sessions in Oslo. See what is included and how booking works."
+      },
+      "faq": {
+        "title": "FAQ | Creative Flø",
+        "description": "Answers to common questions about photo sessions, photo delivery, booking, rescheduling and weather."
+      },
+      "contact": {
+        "title": "Contact and booking | Creative Flø",
+        "description": "Book a session or ask a question. Send an enquiry and I will reply by email."
+      },
+      "privacy": {
+        "title": "Privacy policy | Creative Flø",
+        "description": "How Creative Flø handles personal data."
+      },
+      "notFound": {
+        "title": "Page not found | Creative Flø",
+        "description": "The page you were looking for does not exist."
+      }
+    }
+  }
+}

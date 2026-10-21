@@ -1,0 +1,115 @@
+{
+  "nav": {
+    "skipToContent": "Skip to content",
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "services": "Pricing",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "book": "Book",
+    "menuOpen": "Menu",
+    "menuClose": "Close menu",
+    "mainNavLabel": "Main menu",
+    "switchLabel": "Norsk",
+    "switchAria": "Les denne siden på norsk"
+  },
+  "common": {
+    "from": "from",
+    "bookCta": "Book a session",
+    "quoteCta": "Ask for a quote",
+    "seePortfolio": "See portfolio",
+    "photographerIn": "Photographer in Oslo",
+    "placeholderImage": "Placeholder image"
+  },
+  "footer": {
+    "location": "Oslo, Norway",
+    "orgNumberLabel": "Org. no.",
+    "privacy": "Privacy",
+    "language": "Language",
+    "rights": "All photos are protected by copyright."
+  },
+  "home": {
+    "hero": {
+      "pause": "Pause slideshow",
+      "play": "Play slideshow"
+    }
+  },
+  "portfolio": {
+    "filterLabel": "Show category",
+    "filters": {
+      "all": "All",
+      "couples": "Couples",
+      "pregnancy": "Pregnancy",
+      "family": "Family",
+      "portrait": "Portrait"
+    },
+    "defaultAlt": {
+      "couples": "Couples session by Creative Flø",
+      "pregnancy": "Pregnancy session by Creative Flø",
+      "family": "Family session by Creative Flø",
+      "portrait": "Portrait session by Creative Flø"
+    },
+    "lightbox": {
+      "label": "Photo viewer",
+      "close": "Close",
+      "prev": "Previous photo",
+      "next": "Next photo",
+      "of": "of"
+    },
+    "count": "photos"
+  },
+  "contact": {
+    "otherWays": "You can also reach me here",
+    "emailLabel": "Email",
+    "instagramLabel": "Instagram",
+    "locationLabel": "Based in",
+    "form": {
+      "legend": "Enquiry",
+      "requiredNote": "Fields marked with * are required.",
+      "name": "Name",
+      "email": "Email",
+      "date": "Preferred date",
+      "dateHint": "Optional. A rough date is perfectly fine.",
+      "sessionType": "Type of session",
+      "sessionTypeChoose": "Choose a type",
+      "sessionTypes": {
+        "couples": "Couples & engagement",
+        "pregnancy": "Pregnancy",
+        "family": "Family",
+        "portrait": "Portrait",
+        "other": "Other"
+      },
+      "people": "Number of people",
+      "peopleHint": "Optional. Feel free to include kids and pets.",
+      "location": "Approximate location",
+      "locationHint": "Optional. For example Bygdøy, Bærum or at your home.",
+      "message": "Tell me a little about what you would like",
+      "messageHint": "What kind of photos are you dreaming of? Anything special I should know?",
+      "submit": "Send enquiry",
+      "sending": "Sending…",
+      "privacyNote": "Your details are only used to reply to your enquiry. Read more in the <a href=\"/en/privacy/\">privacy policy</a>.",
+      "errors": {
+        "summary": "Something is missing. Please check the highlighted fields.",
+        "name": "Please enter your name.",
+        "email": "Please enter a valid email address, for example name@email.com.",
+        "sessionType": "Please choose the type of session you would like.",
+        "message": "Please write a few words about what you would like.",
+        "people": "Please enter a number between 1 and 30."
+      },
+      "success": {
+        "heading": "Thank you for your message!",
+        "text": "I have received your enquiry and will reply by email as soon as I can. If you don’t hear from me, please check your spam folder."
+      },
+      "failure": "Sorry, your message could not be sent right now. Please try again, or email me directly.",
+      "notConfigured": "The form is not connected yet. Please email me directly and I will reply as soon as I can.",
+      "mailtoFallback": "Prefer email? Write to",
+      "mailSubject": "Photo session enquiry"
+    }
+  },
+  "notFound": {
+    "heading": "This page doesn’t exist",
+    "text": "Maybe the link is old, or the page has moved.",
+    "cta": "Go to the home page"
+  }
+}

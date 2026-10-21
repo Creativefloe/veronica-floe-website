@@ -1,0 +1,104 @@
+---
+import Wordmark from './Wordmark.astro';
+import Icon from './Icon.astro';
+import LangSwitch from './LangSwitch.astro';
+import { site, instagramUrl } from '../config/site';
+import { t, url, type Lang, type RouteKey } from '../i18n';
+
+interface Props { lang: Lang; page: RouteKey; }
+const { lang, page } = Astro.props;
+const c = t(lang);
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container inner">
+    <div class="brand-col">
+      <a href={url('home', lang)} class="brand" aria-label={`Creative Flø, ${c.nav.home}`}><Wordmark size="lg" /></a>
+      <p class="tagline">{c.home.hero.tagline}</p>
+    </div>
+
+    <ul class="contact">
+      <li>
+        <a href={instagramUrl} rel="noopener" target="_blank">
+          <Icon name="instagram" />@{site.instagram}
+        </a>
+      </li>
+      <li>
+        <a href={`mailto:${site.email}`}><Icon name="envelope" />{site.email}</a>
+      </li>
+      <li><span><Icon name="map-pin" />{c.footer.location}</span></li>
+    </ul>
+
+    <div class="meta">
+      <p>
+        <span class="visually-hidden">{c.footer.language}: </span>
+        <LangSwitch lang={lang} page={page} />
+      </p>
+      <p><a href={url('privacy', lang)}>{c.footer.privacy}</a></p>
+    </div>
+  </div>
+
+  <div class="container legal">
+    <p>
+      &copy; {year} {site.brand}, {site.name}
+      {site.orgNumber && <span>. {c.footer.orgNumberLabel} {site.orgNumber}</span>}
+    </p>
+    <p>{c.footer.rights}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: auto;
+    background: var(--color-surface);
+    padding: clamp(3.5rem, 2.5rem + 4vw, 5.5rem) 0 calc(2rem + var(--mobile-bar, 0px));
+    font-size: var(--text-sm);
+  }
+  .inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr auto;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .brand { text-decoration: none; }
+  .tagline {
+    margin-top: 1rem;
+    max-width: 24rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    color: var(--color-body);
+  }
+  .contact { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
+  .contact a, .contact span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 2.5rem;
+    color: var(--color-body);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+  .contact a:hover { color: var(--color-ink); text-decoration: underline; }
+  .contact :global(svg) { flex: none; color: var(--color-accent); }
+  .meta { display: grid; gap: 0.25rem; justify-items: start; }
+  .meta p { margin: 0; }
+  .meta a:not(.lang-switch) { color: var(--color-body); display: inline-flex; min-height: 2.75rem; align-items: center; }
+  .legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-hairline);
+    color: var(--color-muted);
+    font-size: 0.875rem;
+  }
+  .legal p { margin: 0; }
+
+  @media (max-width: 760px) {
+    .inner { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>

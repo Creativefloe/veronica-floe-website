@@ -1,0 +1,33 @@
+---
+// Icons from Phosphor (regular weight). Add more by importing from @phosphor-icons/core/assets/regular/
+import ArrowRight from '@phosphor-icons/core/assets/regular/arrow-right.svg';
+import CaretLeft from '@phosphor-icons/core/assets/regular/caret-left.svg';
+import CaretRight from '@phosphor-icons/core/assets/regular/caret-right.svg';
+import Envelope from '@phosphor-icons/core/assets/regular/envelope-simple.svg';
+import Instagram from '@phosphor-icons/core/assets/regular/instagram-logo.svg';
+import List from '@phosphor-icons/core/assets/regular/list.svg';
+import MapPin from '@phosphor-icons/core/assets/regular/map-pin.svg';
+import Plus from '@phosphor-icons/core/assets/regular/plus.svg';
+import X from '@phosphor-icons/core/assets/regular/x.svg';
+
+const icons = {
+  'arrow-right': ArrowRight,
+  'caret-left': CaretLeft,
+  'caret-right': CaretRight,
+  envelope: Envelope,
+  instagram: Instagram,
+  list: List,
+  'map-pin': MapPin,
+  plus: Plus,
+  x: X,
+};
+
+interface Props {
+  name: keyof typeof icons;
+  size?: number;
+  class?: string;
+}
+const { name, size = 20, class: className } = Astro.props;
+const Svg = icons[name];
+---
+<Svg width={size} height={size} class={className} aria-hidden="true" focusable="false" />

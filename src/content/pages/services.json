@@ -1,0 +1,178 @@
+{
+  "no": {
+    "heading": "Fotografering og priser",
+    "intro": "Alle fotograferinger er rolige og uformelle. Jeg veileder dere underveis, og dere får ekte bilder av det som betyr mest akkurat nå. Det kan være en vanlig koselig dag, flyttingen til et nytt hjem, den første tiden med en nyfødt, eller de store milepælene som graviditet og forlovelse.",
+    "priceNote": "Prisene er startpriser. Egne pakker kan avtales.",
+    "other": {
+      "heading": "Portrett, nyfødt og bryllup",
+      "text": "Jeg tar også portretter, nyfødtfotografering og bryllup etter avtale. Nyfødt og bryllup er områder jeg vokser inn i, og jeg gleder meg til å gjøre mer av det. Ta kontakt for et pristilbud."
+    },
+    "included": {
+      "heading": "Dette er inkludert",
+      "items": [
+        "Omtrent 60 minutters fotografering, kan justeres etter avtale",
+        "Minst 30 ferdig redigerte bilder i høy oppløsning, ofte flere",
+        "Privat nettgalleri der dere laster ned bildene",
+        "5 smakebiter innen 2 dager etter fotograferingen",
+        "Bruk til personlige utskrifter, fotobøker og lignende",
+        "Reise i Oslo-området"
+      ],
+      "note": "Jeg leverer kun ferdig redigerte bilder, ikke uredigerte. Ønsker dere noe annet enn det som er beskrevet her? Da setter vi sammen en egen pakke."
+    },
+    "travel": {
+      "heading": "Reise",
+      "text": "Jeg holder til i Oslo, og reise i Oslo-området er inkludert. Steder opptil omtrent en time unna går også fint. Lengre reiser avtaler vi, og da dekker dere reiseutgifter som tog eller fly."
+    },
+    "booking": {
+      "heading": "Slik booker du",
+      "steps": [
+        {
+          "title": "Send en forespørsel",
+          "text": "Bruk kontaktskjemaet eller send meg en melding på Instagram. Fortell litt om hva dere ønsker."
+        },
+        {
+          "title": "Vi finner en dato",
+          "text": "Vi blir enige om dato, tidspunkt og et sted som passer dere og årstiden."
+        },
+        {
+          "title": "Reserver datoen",
+          "text": "En bookingavgift på 30 % reserverer datoen. Fotograferingen er bekreftet når avgiften er betalt."
+        },
+        {
+          "title": "Betal resten",
+          "text": "Restbeløpet betales før fotograferingen."
+        }
+      ]
+    },
+    "delivery": {
+      "heading": "Levering",
+      "items": [
+        {
+          "when": "Innen 2 dager",
+          "what": "5 ferdige bilder som en liten smakebit"
+        },
+        {
+          "when": "Innen 2-3 uker",
+          "what": "Hele galleriet med minst 30 bilder, klare til nedlasting"
+        }
+      ],
+      "note": "Bildene leveres i et privat nettgalleri. Dere kan bruke dem til personlige utskrifter, fotobøker og lignende."
+    },
+    "terms": {
+      "heading": "Bookingvilkår",
+      "intro": "En bookingavgift på 30 % av prisen reserverer datoen, og fotograferingen er bekreftet når avgiften er betalt. Restbeløpet betales før fotograferingen.",
+      "cancelHeading": "Avbestilling og flytting",
+      "rules": [
+        {
+          "when": "Mer enn 7 dager før",
+          "what": "Du får hele bookingavgiften tilbake."
+        },
+        {
+          "when": "Fra 7 dager til 48 timer før",
+          "what": "Bookingavgiften refunderes ikke, men du kan flytte fotograferingen én gang uten kostnad."
+        },
+        {
+          "when": "Mindre enn 48 timer før, eller hvis du ikke møter opp",
+          "what": "Bookingavgiften refunderes ikke, og fotograferingen kan ikke flyttes. Hvor mye av restbeløpet som refunderes, avhenger av hvor mye forberedelser som allerede er gjort."
+        },
+        {
+          "when": "Dårlig vær eller sykdom",
+          "what": "Vi flytter gratis til en ny dato, uansett når det skjer. Gi beskjed så snart som mulig."
+        }
+      ],
+      "note": "Ny dato avtales etter ledig kapasitet."
+    },
+    "cta": {
+      "heading": "Klar for å booke?",
+      "text": "Send en forespørsel, så finner vi en dato sammen."
+    }
+  },
+  "en": {
+    "heading": "Sessions and pricing",
+    "intro": "Every session is calm and relaxed. I guide you along the way, and you get genuine photos of what matters most right now. That could be an ordinary cozy day, moving into a new home, the first weeks with a newborn, or big milestones like pregnancy and engagement.",
+    "priceNote": "Prices are starting prices. Custom packages are available by agreement.",
+    "other": {
+      "heading": "Portrait, newborn and wedding",
+      "text": "I also photograph portraits, newborns and weddings by agreement. Newborn and wedding photography are areas I am growing into, and I look forward to doing more of them. Contact me for a quote."
+    },
+    "included": {
+      "heading": "What’s included",
+      "items": [
+        "About 60 minutes of photography, adjustable by agreement",
+        "At least 30 fully edited high-resolution photos, often more",
+        "A private online gallery where you download your photos",
+        "5 sneak peeks within 2 days of the session",
+        "Use for personal prints, photo books and the like",
+        "Travel within the Oslo area"
+      ],
+      "note": "I only deliver fully edited photos, never unedited files. Would you like something different from what is described here? We can put together a custom package."
+    },
+    "travel": {
+      "heading": "Travel",
+      "text": "I am based in Oslo, and travel within the Oslo area is included. Locations up to about an hour away are also possible. Longer trips are by agreement, and you cover travel costs such as train or flights."
+    },
+    "booking": {
+      "heading": "How booking works",
+      "steps": [
+        {
+          "title": "Send an enquiry",
+          "text": "Use the contact form or send me a message on Instagram. Tell me a little about what you have in mind."
+        },
+        {
+          "title": "Find a date",
+          "text": "We agree on a date, a time and a place that suits you and the season."
+        },
+        {
+          "title": "Reserve the date",
+          "text": "A 30% booking fee reserves your date. The session is confirmed once the fee is paid."
+        },
+        {
+          "title": "Pay the rest",
+          "text": "The remaining amount is paid before the session."
+        }
+      ]
+    },
+    "delivery": {
+      "heading": "Delivery",
+      "items": [
+        {
+          "when": "Within 2 days",
+          "what": "5 finished photos as a sneak peek"
+        },
+        {
+          "when": "Within 2-3 weeks",
+          "what": "The full gallery with at least 30 photos, ready to download"
+        }
+      ],
+      "note": "Photos are delivered in a private online gallery. You can use them for personal prints, photo books and the like."
+    },
+    "terms": {
+      "heading": "Booking terms",
+      "intro": "A booking fee of 30% of the price reserves your date, and the session is confirmed once the fee is paid. The remaining amount is paid before the session.",
+      "cancelHeading": "Cancelling and rescheduling",
+      "rules": [
+        {
+          "when": "More than 7 days before",
+          "what": "You get the full booking fee back."
+        },
+        {
+          "when": "From 7 days to 48 hours before",
+          "what": "The booking fee is not refunded, but you can reschedule once at no cost."
+        },
+        {
+          "when": "Less than 48 hours before, or if you don’t show up",
+          "what": "The booking fee is not refunded and the session cannot be rescheduled. How much of the remaining amount is refunded depends on how much preparation has already been done."
+        },
+        {
+          "when": "Bad weather or illness",
+          "what": "We move to a new date for free, whenever it happens. Just let me know as soon as possible."
+        }
+      ],
+      "note": "New dates are set according to availability."
+    },
+    "cta": {
+      "heading": "Ready to book?",
+      "text": "Send an enquiry and we will find a date together."
+    }
+  }
+}

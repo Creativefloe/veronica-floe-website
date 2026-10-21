@@ -1,0 +1,124 @@
+---
+import '@fontsource/cormorant-garamond/500.css';
+import '@fontsource/cormorant-garamond/500-italic.css';
+import '@fontsource-variable/jost';
+import '../styles/global.css';
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileBook from '../components/MobileBook.astro';
+import { site, instagramUrl } from '../config/site';
+import { t, routes, url, htmlLang, ogLocale, languages, type Lang, type RouteKey } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  /** Which page this is. Drives the language switcher, hreflang and canonical URL. */
+  page: RouteKey;
+  /** Key in content `meta.pages`. Defaults to `page`. */
+  metaKey?: keyof ReturnType<typeof t>['meta']['pages'];
+  jsonLd?: object[];
+  noindex?: boolean;
+  /** Hide the sticky mobile Book button (e.g. on the contact page). */
+  hideMobileBook?: boolean;
+}
+
+const { lang, page, metaKey = page, jsonLd = [], noindex = false, hideMobileBook = false } = Astro.props;
+const c = t(lang);
+const meta = c.meta.pages[metaKey];
+const siteUrl = Astro.site!;
+const abs = (path: string) => new URL(path, siteUrl).href;
+const canonical = abs(url(page, lang));
+const ogImage = abs('/images/og-image.jpg');
+
+const business = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'ProfessionalService'],
+  '@id': abs('/#business'),
+  name: site.brand,
+  description: c.meta.defaultDescription,
+  url: abs(url('home', lang)),
+  image: ogImage,
+  email: site.email,
+  priceRange: `NOK ${site.prices.couples}+`,
+  address: { '@type': 'PostalAddress', addressLocality: site.city, addressCountry: site.country },
+  areaServed: { '@type': 'City', name: 'Oslo' },
+  sameAs: [instagramUrl],
+  founder: { '@type': 'Person', name: site.name, jobTitle: lang === 'no' ? 'Fotograf' : 'Photographer' },
+  knowsLanguage: ['nb', 'en'],
+  ...(site.orgNumber ? { taxID: site.orgNumber.replace(/\s/g, '') } : {}),
+};
+const schemas = [business, ...jsonLd];
+---
+<!doctype html>
+<html lang={htmlLang[lang]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    {!noindex && languages.map((l) => (
+      <link rel="alternate" hreflang={htmlLang[l]} href={abs(routes[page][l])} />
+    ))}
+    {!noindex && <link rel="alternate" hreflang="x-default" href={abs(routes[page].no)} />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={c.meta.siteName} />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={ogLocale[lang]} />
+    <meta property="og:locale:alternate" content={ogLocale[lang === 'no' ? 'en' : 'no']} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#f7f3ec" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <script is:inline>document.documentElement.classList.add('js');</script>
+
+    {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+
+    {/*
+      OPTIONAL ANALYTICS (off by default, no cookies).
+      1. Create an account at plausible.io (or self-host Umami).
+      2. Fill in `analytics` in src/config/site.ts and set enabled: true.
+      3. Remove the comment markers around the line below.
+    */}
+    {/* site.analytics.enabled && <script is:inline defer data-domain={site.analytics.domain} src={site.analytics.src}></script> */}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{c.nav.skipToContent}</a>
+    <Header lang={lang} page={page} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer lang={lang} page={page} />
+    {!hideMobileBook && <MobileBook lang={lang} />}
+
+    <script>
+      // Subtle fade-in on scroll. Skipped entirely when the visitor prefers reduced motion.
+      const items = document.querySelectorAll('.reveal');
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+        items.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+          }),
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+        );
+        items.forEach((el) => io.observe(el));
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  main:focus { outline: none; }
+</style>

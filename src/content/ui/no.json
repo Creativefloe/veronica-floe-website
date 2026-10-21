@@ -1,0 +1,115 @@
+{
+  "nav": {
+    "skipToContent": "Hopp til innholdet",
+    "home": "Hjem",
+    "portfolio": "Portefølje",
+    "about": "Om meg",
+    "services": "Priser",
+    "faq": "Spørsmål og svar",
+    "contact": "Kontakt",
+    "book": "Book",
+    "menuOpen": "Meny",
+    "menuClose": "Lukk meny",
+    "mainNavLabel": "Hovedmeny",
+    "switchLabel": "English",
+    "switchAria": "Read this page in English"
+  },
+  "common": {
+    "from": "fra",
+    "bookCta": "Book en fotografering",
+    "quoteCta": "Be om pristilbud",
+    "seePortfolio": "Se portefølje",
+    "photographerIn": "Fotograf i Oslo",
+    "placeholderImage": "Plassholderbilde"
+  },
+  "footer": {
+    "location": "Oslo, Norge",
+    "orgNumberLabel": "Org.nr.",
+    "privacy": "Personvern",
+    "language": "Språk",
+    "rights": "Alle bilder er beskyttet av opphavsrett."
+  },
+  "home": {
+    "hero": {
+      "pause": "Sett bildeveksling på pause",
+      "play": "Start bildeveksling"
+    }
+  },
+  "portfolio": {
+    "filterLabel": "Vis kategori",
+    "filters": {
+      "all": "Alle",
+      "couples": "Par",
+      "pregnancy": "Gravid",
+      "family": "Familie",
+      "portrait": "Portrett"
+    },
+    "defaultAlt": {
+      "couples": "Parfotografering av Creative Flø",
+      "pregnancy": "Gravidfotografering av Creative Flø",
+      "family": "Familiefotografering av Creative Flø",
+      "portrait": "Portrettfotografering av Creative Flø"
+    },
+    "lightbox": {
+      "label": "Bildevisning",
+      "close": "Lukk",
+      "prev": "Forrige bilde",
+      "next": "Neste bilde",
+      "of": "av"
+    },
+    "count": "bilder"
+  },
+  "contact": {
+    "otherWays": "Du kan også nå meg her",
+    "emailLabel": "E-post",
+    "instagramLabel": "Instagram",
+    "locationLabel": "Base",
+    "form": {
+      "legend": "Forespørsel",
+      "requiredNote": "Felt merket med * må fylles ut.",
+      "name": "Navn",
+      "email": "E-post",
+      "date": "Ønsket dato",
+      "dateHint": "Valgfritt. En omtrentlig dato er helt fint.",
+      "sessionType": "Type fotografering",
+      "sessionTypeChoose": "Velg type",
+      "sessionTypes": {
+        "couples": "Par og forlovelse",
+        "pregnancy": "Gravid",
+        "family": "Familie",
+        "portrait": "Portrett",
+        "other": "Annet"
+      },
+      "people": "Antall personer",
+      "peopleHint": "Valgfritt. Ta gjerne med barn og kjæledyr.",
+      "location": "Omtrentlig sted",
+      "locationHint": "Valgfritt. For eksempel Bygdøy, Bærum eller hjemme hos dere.",
+      "message": "Fortell litt om hva du ønsker",
+      "messageHint": "Hva slags bilder drømmer du om? Er det noe spesielt jeg bør vite?",
+      "submit": "Send forespørsel",
+      "sending": "Sender…",
+      "privacyNote": "Opplysningene brukes kun til å svare på forespørselen din. Les mer i <a href=\"/personvern/\">personvernerklæringen</a>.",
+      "errors": {
+        "summary": "Noe mangler. Se over feltene som er markert.",
+        "name": "Skriv inn navnet ditt.",
+        "email": "Skriv inn en gyldig e-postadresse, for eksempel navn@epost.no.",
+        "sessionType": "Velg hvilken type fotografering du ønsker.",
+        "message": "Skriv noen ord om hva du ønsker.",
+        "people": "Skriv inn et tall mellom 1 og 30."
+      },
+      "success": {
+        "heading": "Takk for meldingen!",
+        "text": "Jeg har fått forespørselen din og svarer deg på e-post så snart jeg kan. Sjekk gjerne søppelpost-mappen hvis du ikke hører fra meg."
+      },
+      "failure": "Beklager, meldingen kunne ikke sendes akkurat nå. Prøv igjen, eller send meg en e-post direkte.",
+      "notConfigured": "Skjemaet er ikke koblet til ennå. Send meg en e-post direkte, så svarer jeg så snart jeg kan.",
+      "mailtoFallback": "Foretrekker du e-post? Skriv til",
+      "mailSubject": "Forespørsel om fotografering"
+    }
+  },
+  "notFound": {
+    "heading": "Denne siden finnes ikke",
+    "text": "Kanskje lenken er gammel, eller siden er flyttet.",
+    "cta": "Til forsiden"
+  }
+}

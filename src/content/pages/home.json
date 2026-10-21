@@ -1,0 +1,62 @@
+{
+  "no": {
+    "hero": {
+      "eyebrow": "Fotograf i Oslo",
+      "tagline": "Fanger dyrebare øyeblikk fra livets ulike årstider."
+    },
+    "intro": {
+      "heading": "Ekte øyeblikk, slik de faktisk er",
+      "text": "Hei, jeg heter Veronika. Jeg fotograferer par, gravide og familier i og rundt Oslo. Både hverdagsøyeblikkene, som den første tiden med en nyfødt, flyttingen til et nytt hjem eller en helt vanlig koselig dag, og de store milepælene som graviditet og forlovelse. Ingen stive poseringer, bare dere, lyset og det som betyr noe."
+    },
+    "sessionsHeading": "Fotograferinger",
+    "sessionsLink": "Se priser og hva som er inkludert",
+    "work": {
+      "heading": "Utvalgte bilder",
+      "cta": "Se hele porteføljen"
+    },
+    "aboutTeaser": {
+      "heading": "Hei, jeg er Veronika",
+      "text": "Jeg har elsket kamera så lenge jeg kan huske. Etter seks år med fotografering av konserter, arrangementer og mennesker, fanger jeg nå de små og store øyeblikkene i livet ditt. Ekte, naturlig og uten maske.",
+      "cta": "Mer om meg",
+      "imageAlt": "Portrett av Veronika Flø som smiler, med høstfarger og trær i bakgrunnen"
+    },
+    "testimonials": {
+      "heading": "Hva andre sier",
+      "items": []
+    },
+    "finalCta": {
+      "heading": "Skal vi lage noe fint sammen?",
+      "text": "Fortell meg litt om hva du ønsker, så finner vi en dato som passer."
+    }
+  },
+  "en": {
+    "hero": {
+      "eyebrow": "Photographer in Oslo",
+      "tagline": "Capturing precious moments from different seasons of life."
+    },
+    "intro": {
+      "heading": "Real moments, just as they are",
+      "text": "Hi, I’m Veronika. I photograph couples, pregnancies and families in and around Oslo. Everyday moments, like the first weeks with a newborn, moving into a new home or a cozy day together, and the big milestones like pregnancy and engagement. No stiff posing, just you, the light and what matters."
+    },
+    "sessionsHeading": "Sessions",
+    "sessionsLink": "See pricing and what is included",
+    "work": {
+      "heading": "Selected work",
+      "cta": "See the full portfolio"
+    },
+    "aboutTeaser": {
+      "heading": "Hi, I’m Veronika",
+      "text": "I have loved cameras for as long as I can remember. After six years of photographing concerts, events and people, I now capture the small and big moments of your life. Genuine, natural and without a mask.",
+      "cta": "More about me",
+      "imageAlt": "Portrait of Veronika Flø smiling, with autumn colours and trees in the background"
+    },
+    "testimonials": {
+      "heading": "Kind words",
+      "items": []
+    },
+    "finalCta": {
+      "heading": "Shall we make something beautiful together?",
+      "text": "Tell me a little about what you have in mind, and we will find a date that works."
+    }
+  }
+}

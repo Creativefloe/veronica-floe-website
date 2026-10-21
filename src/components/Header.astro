@@ -1,0 +1,250 @@
+---
+import Wordmark from './Wordmark.astro';
+import Icon from './Icon.astro';
+import { t, url, type Lang, type RouteKey } from '../i18n';
+import LangSwitch from './LangSwitch.astro';
+import { site, instagramUrl } from '../config/site';
+
+interface Props { lang: Lang; page: RouteKey; }
+const { lang, page } = Astro.props;
+const c = t(lang);
+
+const links: { key: RouteKey; label: string }[] = [
+  { key: 'portfolio', label: c.nav.portfolio },
+  { key: 'about', label: c.nav.about },
+  { key: 'services', label: c.nav.services },
+  { key: 'faq', label: c.nav.faq },
+  { key: 'contact', label: c.nav.contact },
+];
+---
+<header class="site-header" data-header>
+  <div class="container bar">
+    <a href={url('home', lang)} class="brand" aria-label={`Creative Flø, ${c.nav.home}`}>
+      <Wordmark />
+    </a>
+
+    <nav class="nav" id="site-nav" aria-label={c.nav.mainNavLabel} data-nav>
+      <ul>
+        {links.map((l) => (
+          <li>
+            <a href={url(l.key, lang)} aria-current={page === l.key ? 'page' : undefined}>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+      <div class="nav-extra">
+        <a class="ig" href={instagramUrl} rel="noopener" target="_blank" aria-label={`Instagram @${site.instagram}`}>
+          <Icon name="instagram" size={22} />
+          <span class="ig-handle">@{site.instagram}</span>
+        </a>
+        <LangSwitch lang={lang} page={page} />
+        <a class="btn nav-book" href={url('contact', lang)}>{c.nav.book}</a>
+      </div>
+    </nav>
+
+    <div class="mobile-tools">
+      <LangSwitch lang={lang} page={page} compact />
+      <button
+        class="menu-btn"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        data-menu-btn
+        data-open-label={c.nav.menuOpen}
+        data-close-label={c.nav.menuClose}
+      >
+        <span class="menu-icon menu-icon--open"><Icon name="list" size={24} /></span>
+        <span class="menu-icon menu-icon--close"><Icon name="x" size={24} /></span>
+        <span class="visually-hidden" data-menu-label>{c.nav.menuOpen}</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s var(--ease);
+  }
+  /* Blur lives on a pseudo-element so the fixed mobile menu isn't trapped inside the header */
+  .site-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: color-mix(in srgb, var(--color-canvas) 94%, transparent);
+    backdrop-filter: saturate(1.2) blur(10px);
+    -webkit-backdrop-filter: saturate(1.2) blur(10px);
+  }
+  .site-header.is-scrolled { border-bottom-color: var(--color-hairline); }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    height: var(--header-h);
+  }
+  .brand { text-decoration: none; display: inline-flex; }
+
+  .nav { display: flex; align-items: center; gap: 2rem; }
+  .nav ul {
+    display: flex;
+    gap: clamp(1rem, 2vw, 1.9rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav ul a {
+    position: relative;
+    color: var(--color-body);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    letter-spacing: 0.02em;
+    padding-block: 0.4rem;
+    white-space: nowrap;
+  }
+  .nav ul a::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--ease);
+  }
+  .nav ul a:hover { color: var(--color-ink); }
+  .nav ul a:hover::after,
+  .nav ul a[aria-current='page']::after { transform: scaleX(1); }
+  .nav ul a[aria-current='page'] { color: var(--color-ink); }
+
+  .nav-extra { display: flex; align-items: center; gap: 1.25rem; }
+  .nav-book { min-height: 2.5rem; padding: 0.55rem 1.3rem; }
+  .ig {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-inline: -0.5rem;
+    color: var(--color-ink);
+    border-radius: var(--radius-pill);
+    transition: color 0.2s var(--ease);
+  }
+  .ig:hover { color: var(--color-accent); }
+  .ig-handle { display: none; }
+
+  .mobile-tools { display: none; align-items: center; gap: 0.5rem; }
+  .menu-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-ink);
+    cursor: pointer;
+  }
+  .menu-icon { display: inline-flex; }
+  .menu-icon--close { display: none; }
+  .menu-btn[aria-expanded='true'] .menu-icon--open { display: none; }
+  .menu-btn[aria-expanded='true'] .menu-icon--close { display: inline-flex; }
+
+  @media (max-width: 960px) {
+    .mobile-tools { display: flex; }
+    .nav {
+      position: fixed;
+      inset: var(--header-h) 0 auto 0;
+      height: calc(100dvh - var(--header-h));
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 2rem var(--gutter) calc(2rem + env(safe-area-inset-bottom));
+      background: var(--color-canvas);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0s linear 0.3s;
+    }
+    .nav.is-open {
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0s;
+    }
+    .nav ul { flex-direction: column; gap: 0.25rem; }
+    .nav ul a {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      font-weight: 500;
+      color: var(--color-ink);
+      letter-spacing: 0;
+    }
+    .nav ul a::after { display: none; }
+    .nav ul a[aria-current='page'] { color: var(--color-accent); }
+    .nav-extra { width: 100%; justify-content: space-between; }
+    .nav-extra :global(.lang-switch) { display: none; }
+    .nav-extra { flex-direction: column; align-items: stretch; gap: 1rem; }
+    .ig {
+      display: inline-flex;
+      gap: 0.6rem;
+      width: auto;
+      margin: 0;
+      justify-content: flex-start;
+      font-size: 1.05rem;
+    }
+    .ig-handle { display: inline; }
+    .nav-book { flex: 1; min-height: 3rem; }
+  }
+
+  /* Without JavaScript the menu stays visible as a simple list */
+  :global(html:not(.js)) .mobile-tools .menu-btn { display: none; }
+  @media (max-width: 960px) {
+    :global(html:not(.js)) .nav {
+      position: static; height: auto; visibility: visible; opacity: 1; transform: none; padding: 1rem 0;
+    }
+    :global(html:not(.js)) .bar { height: auto; flex-wrap: wrap; padding-block: 1rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav, .nav.is-open { transition: none; }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const btn = document.querySelector<HTMLButtonElement>('[data-menu-btn]');
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const label = document.querySelector<HTMLElement>('[data-menu-label]');
+
+  if (header) {
+    const sentinel = document.createElement('div');
+    sentinel.style.cssText = 'position:absolute;top:0;height:1px;width:1px;';
+    document.body.prepend(sentinel);
+    new IntersectionObserver(([e]) => header.classList.toggle('is-scrolled', !e.isIntersecting)).observe(sentinel);
+  }
+
+  if (btn && nav && label) {
+    const setOpen = (open: boolean) => {
+      btn.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+      label.textContent = (open ? btn.dataset.closeLabel : btn.dataset.openLabel) ?? '';
+    };
+    btn.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        btn.focus();
+      }
+    });
+    nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    matchMedia('(min-width: 961px)').addEventListener('change', (e) => e.matches && setOpen(false));
+  }
+</script>

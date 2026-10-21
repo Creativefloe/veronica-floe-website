@@ -1,0 +1,824 @@
+# Sveltia CMS configuration for creativefloe.com (opens at /admin/)
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+backend:
+  name: github
+  repo: GITHUB-USERNAME/creative-floe
+  branch: main
+site_url: https://creativefloe.com
+display_url: https://creativefloe.com
+logo_url: /favicon.svg
+media_folder: src/assets/images/photos
+public_folder: /src/assets/images/photos
+media_libraries:
+  default:
+    config:
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 2560
+          height: 2560
+i18n:
+  structure: single_file
+  locales:
+    - "no"
+    - en
+  default_locale: "no"
+collections:
+  - name: portfolio
+    label: Portefølje / Portfolio
+    icon: photo_library
+    description: Legg til, fjern eller endre rekkefølge på bilder. Det første bildet i hver kategori vises også på kortene for fotograferinger. / Add, remove or reorder photos. The first photo in each category is also used on the session cards.
+    files:
+      - name: photos
+        label: Bilder / Photos
+        file: src/content/portfolio.json
+        format: json
+        fields:
+          - name: photos
+            label: Bilder / Photos
+            widget: list
+            fields:
+              - name: image
+                label: Bilde / Photo
+                widget: image
+              - name: category
+                label: Kategori / Category
+                widget: select
+                options:
+                  - label: Par og forlovelse / Couples
+                    value: couples
+                  - label: Gravid / Pregnancy
+                    value: pregnancy
+                  - label: Familie / Family
+                    value: family
+                  - label: Portrett / Portrait
+                    value: portrait
+              - name: featured
+                label: Vis på forsiden / Show on home page (max 6)
+                widget: boolean
+                default: false
+                required: false
+              - name: alt
+                label: Kort beskrivelse av bildet (for blinde og Google) / Short description (for blind visitors and Google)
+                widget: object
+                fields:
+                  - name: "no"
+                    label: Norsk
+                    widget: string
+                  - name: en
+                    label: English
+                    widget: string
+            summary: "{{fields.alt.no}} ({{fields.category}})"
+            label_singular: Bilde / Photo
+            add_to_top: true
+  - name: slideshow
+    label: Bildeveksling på forsiden / Home slideshow
+    icon: slideshow
+    description: De store bildene øverst på forsiden. Velg liggende bilder der personene er i midten eller til høyre, siden teksten ligger til venstre. / The large photos at the top of the home page. Pick landscape photos with the people in the middle or on the right.
+    files:
+      - name: hero
+        label: Bilder / Photos
+        file: src/content/hero.json
+        format: json
+        fields:
+          - name: slides
+            label: Bilder / Photos
+            widget: list
+            fields:
+              - name: image
+                label: Bilde / Photo
+                widget: image
+              - name: position
+                label: Utsnitt / Crop position
+                widget: string
+                required: false
+                default: 50% 50%
+                hint: 'Hvilken del av bildet som vises: "venstre-høyre topp-bunn", f.eks. "50% 30%" viser litt mer av toppen. / Which part stays visible, e.g. "50% 30%" keeps more of the top.'
+              - name: alt
+                label: Kort beskrivelse / Short description
+                widget: object
+                fields:
+                  - name: "no"
+                    label: Norsk
+                    widget: string
+                  - name: en
+                    label: English
+                    widget: string
+            summary: "{{fields.alt.no}}"
+            label_singular: Bilde / Photo
+  - name: pages
+    label: Tekst på sidene / Page text
+    icon: description
+    i18n: true
+    files:
+      - name: home
+        label: Forside / Home
+        file: src/content/pages/home.json
+        format: json
+        i18n: true
+        fields:
+          - name: hero
+            label: Øverst / Top
+            widget: object
+            fields:
+              - name: eyebrow
+                label: Liten tekst over navnet / Small text above the name
+                widget: string
+                i18n: true
+              - name: tagline
+                label: Slagord / Tagline
+                widget: string
+                i18n: true
+            i18n: true
+          - name: intro
+            label: Introduksjon / Introduction
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: text
+                label: Tekst / Text
+                widget: text
+                i18n: true
+            i18n: true
+          - name: sessionsHeading
+            label: Overskrift for fotograferinger / Sessions heading
+            widget: string
+            i18n: true
+          - name: sessionsLink
+            label: Lenke til priser / Link to pricing
+            widget: string
+            i18n: true
+          - name: work
+            label: Utvalgte bilder / Selected work
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: cta
+                label: Lenketekst / Link text
+                widget: string
+                i18n: true
+            i18n: true
+          - name: aboutTeaser
+            label: Om meg (kort) / About teaser
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: text
+                label: Tekst / Text
+                widget: text
+                i18n: true
+              - name: cta
+                label: Lenketekst / Link text
+                widget: string
+                i18n: true
+              - name: imageAlt
+                label: Beskrivelse av portrettet / Portrait description
+                widget: string
+                i18n: true
+            i18n: true
+          - name: testimonials
+            label: Tilbakemeldinger / Testimonials
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: items
+                label: Tilbakemeldinger (vises når minst én er lagt til) / Testimonials (shown once at least one is added)
+                widget: list
+                fields:
+                  - name: quote
+                    label: Sitat / Quote
+                    widget: text
+                    i18n: true
+                  - name: name
+                    label: Navn / Name
+                    widget: string
+                    i18n: true
+                  - name: session
+                    label: Type fotografering / Session type
+                    widget: string
+                    required: false
+                    i18n: true
+                required: false
+                summary: "{{fields.name}}"
+                i18n: true
+            i18n: true
+          - name: finalCta
+            label: Oppfordring nederst / Call to action at the bottom
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: text
+                label: Tekst / Text
+                widget: text
+                i18n: true
+            i18n: true
+      - name: sessions
+        label: Typer fotografering / Session types
+        file: src/content/pages/sessions.json
+        format: json
+        i18n: true
+        description: Prisene endres under Innstillinger. / Prices are changed under Settings.
+        fields:
+          - name: couples
+            label: Par og forlovelse / Couples
+            widget: object
+            fields:
+              - name: name
+                label: Navn / Name
+                widget: string
+                i18n: true
+              - name: short
+                label: Kort tekst (forsiden) / Short text (home page)
+                widget: text
+                i18n: true
+              - name: long
+                label: Lang tekst (prissiden) / Long text (pricing page)
+                widget: text
+                i18n: true
+            i18n: true
+          - name: pregnancy
+            label: Gravid / Pregnancy
+            widget: object
+            fields:
+              - name: name
+                label: Navn / Name
+                widget: string
+                i18n: true
+              - name: short
+                label: Kort tekst (forsiden) / Short text (home page)
+                widget: text
+                i18n: true
+              - name: long
+                label: Lang tekst (prissiden) / Long text (pricing page)
+                widget: text
+                i18n: true
+            i18n: true
+          - name: family
+            label: Familie / Family
+            widget: object
+            fields:
+              - name: name
+                label: Navn / Name
+                widget: string
+                i18n: true
+              - name: short
+                label: Kort tekst (forsiden) / Short text (home page)
+                widget: text
+                i18n: true
+              - name: long
+                label: Lang tekst (prissiden) / Long text (pricing page)
+                widget: text
+                i18n: true
+            i18n: true
+      - name: portfolio
+        label: Portefølje-siden / Portfolio page
+        file: src/content/pages/portfolio.json
+        format: json
+        i18n: true
+        fields:
+          - name: heading
+            label: Overskrift / Heading
+            widget: string
+            i18n: true
+          - name: intro
+            label: Introduksjon / Intro
+            widget: text
+            i18n: true
+          - name: cta
+            label: Oppfordring nederst / Call to action at the bottom
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: text
+                label: Tekst / Text
+                widget: text
+                i18n: true
+            i18n: true
+      - name: about
+        label: Om meg / About
+        file: src/content/pages/about.json
+        format: json
+        i18n: true
+        fields:
+          - name: heading
+            label: Overskrift / Heading
+            widget: string
+            i18n: true
+          - name: lead
+            label: Ingress / Lead
+            widget: string
+            i18n: true
+          - name: imageAlt
+            label: Beskrivelse av portrettet / Portrait description
+            widget: string
+            i18n: true
+          - name: story
+            label: Historien min (avsnitt) / My story (paragraphs)
+            widget: list
+            field:
+              name: item
+              label: Text
+              widget: text
+              i18n: true
+            i18n: true
+          - name: styleHeading
+            label: "Overskrift: stil / Heading: style"
+            widget: string
+            i18n: true
+          - name: style
+            label: Stil (avsnitt) / Style (paragraphs)
+            widget: list
+            field:
+              name: item
+              label: Text
+              widget: text
+              i18n: true
+            i18n: true
+          - name: personalHeading
+            label: "Overskrift: personlig / Heading: personal"
+            widget: string
+            i18n: true
+          - name: personal
+            label: Personlige punkter / Personal points
+            widget: list
+            field:
+              name: item
+              label: Text
+              widget: string
+              i18n: true
+            i18n: true
+          - name: cta
+            label: Oppfordring nederst / Call to action at the bottom
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: text
+                label: Tekst / Text
+                widget: text
+                i18n: true
+            i18n: true
+      - name: services
+        label: Priser og vilkår / Pricing and terms
+        file: src/content/pages/services.json
+        format: json
+        i18n: true
+        fields:
+          - name: heading
+            label: Overskrift / Heading
+            widget: string
+            i18n: true
+          - name: intro
+            label: Introduksjon / Intro
+            widget: text
+            i18n: true
+          - name: priceNote
+            label: Merknad om priser / Price note
+            widget: string
+            i18n: true
+          - name: other
+            label: Portrett, nyfødt og bryllup / Other sessions
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: text
+                label: Tekst / Text
+                widget: text
+                i18n: true
+            i18n: true
+          - name: included
+            label: Inkludert / Included
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: items
+                label: Punkter / Points
+                widget: list
+                field:
+                  name: item
+                  label: Text
+                  widget: string
+                  i18n: true
+                i18n: true
+              - name: note
+                label: Merknad / Note
+                widget: text
+                i18n: true
+            i18n: true
+          - name: travel
+            label: Reise / Travel
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: text
+                label: Tekst / Text
+                widget: text
+                i18n: true
+            i18n: true
+          - name: booking
+            label: Slik booker du / How booking works
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: steps
+                label: Steg / Steps
+                widget: list
+                fields:
+                  - name: title
+                    label: Tittel / Title
+                    widget: string
+                    i18n: true
+                  - name: text
+                    label: Tekst / Text
+                    widget: text
+                    i18n: true
+                summary: "{{fields.title}}"
+                i18n: true
+            i18n: true
+          - name: delivery
+            label: Levering / Delivery
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: items
+                label: Tidslinje / Timeline
+                widget: list
+                fields:
+                  - name: when
+                    label: Når / When
+                    widget: string
+                    i18n: true
+                  - name: what
+                    label: Hva / What
+                    widget: string
+                    i18n: true
+                summary: "{{fields.when}}"
+                i18n: true
+              - name: note
+                label: Merknad / Note
+                widget: text
+                i18n: true
+            i18n: true
+          - name: terms
+            label: Bookingvilkår / Booking terms
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: intro
+                label: Introduksjon / Intro
+                widget: text
+                i18n: true
+              - name: cancelHeading
+                label: "Overskrift: avbestilling / Heading: cancellation"
+                widget: string
+                i18n: true
+              - name: rules
+                label: Regler / Rules
+                widget: list
+                fields:
+                  - name: when
+                    label: Når / When
+                    widget: string
+                    i18n: true
+                  - name: what
+                    label: Hva gjelder / What applies
+                    widget: text
+                    i18n: true
+                summary: "{{fields.when}}"
+                i18n: true
+              - name: note
+                label: Merknad / Note
+                widget: string
+                i18n: true
+            hint: Husk å holde svarene i Spørsmål og svar i samsvar med vilkårene. / Keep the FAQ answers consistent with these terms.
+            i18n: true
+          - name: cta
+            label: Oppfordring nederst / Call to action at the bottom
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: text
+                label: Tekst / Text
+                widget: text
+                i18n: true
+            i18n: true
+      - name: faq
+        label: Spørsmål og svar / FAQ
+        file: src/content/pages/faq.json
+        format: json
+        i18n: true
+        fields:
+          - name: heading
+            label: Overskrift / Heading
+            widget: string
+            i18n: true
+          - name: intro
+            label: Introduksjon / Intro
+            widget: text
+            i18n: true
+          - name: items
+            label: Spørsmål / Questions
+            widget: list
+            fields:
+              - name: q
+                label: Spørsmål / Question
+                widget: string
+                i18n: true
+              - name: a
+                label: Svar / Answer
+                widget: text
+                hint: 'Lenker skrives slik / Links are written like: <a href="/kontakt/">kontaktskjemaet</a>'
+                i18n: true
+            summary: "{{fields.q}}"
+            i18n: true
+          - name: cta
+            label: Oppfordring nederst / Call to action at the bottom
+            widget: object
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: text
+                label: Tekst / Text
+                widget: text
+                i18n: true
+              - name: button
+                label: Knappetekst / Button text
+                widget: string
+                i18n: true
+            i18n: true
+      - name: contact
+        label: Kontakt / Contact
+        file: src/content/pages/contact.json
+        format: json
+        i18n: true
+        description: E-post og Instagram endres under Innstillinger. / Email and Instagram are changed under Settings.
+        fields:
+          - name: heading
+            label: Overskrift / Heading
+            widget: string
+            i18n: true
+          - name: intro
+            label: Introduksjon / Intro
+            widget: text
+            i18n: true
+          - name: responseNote
+            label: Svartid / Response time
+            widget: string
+            i18n: true
+          - name: location
+            label: Sted / Location
+            widget: string
+            i18n: true
+      - name: privacy
+        label: Personvern / Privacy
+        file: src/content/pages/privacy.json
+        format: json
+        i18n: true
+        fields:
+          - name: heading
+            label: Overskrift / Heading
+            widget: string
+            i18n: true
+          - name: draftNotice
+            label: Utkast-merknad (tøm feltet når teksten er gjennomgått) / Draft notice (clear it once reviewed)
+            widget: string
+            required: false
+            i18n: true
+          - name: updated
+            label: Sist oppdatert / Last updated
+            widget: string
+            i18n: true
+          - name: sections
+            label: Seksjoner / Sections
+            widget: list
+            fields:
+              - name: heading
+                label: Overskrift / Heading
+                widget: string
+                i18n: true
+              - name: body
+                label: Avsnitt / Paragraphs
+                widget: list
+                field:
+                  name: item
+                  label: Text
+                  widget: text
+                  i18n: true
+                hint: 'Lenker skrives slik / Links are written like: <a href="/kontakt/">kontaktskjemaet</a>'
+                i18n: true
+            summary: "{{fields.heading}}"
+            i18n: true
+      - name: seo
+        label: Google og deling / Google and sharing
+        file: src/content/pages/seo.json
+        format: json
+        i18n: true
+        description: Teksten som vises i Google-søk og når siden deles. / Text shown in Google results and when the site is shared.
+        fields:
+          - name: siteName
+            label: Nettstedsnavn / Site name
+            widget: string
+            i18n: true
+          - name: defaultDescription
+            label: Standard beskrivelse / Default description
+            widget: text
+            i18n: true
+          - name: pages
+            label: Sidetitler og beskrivelser / Page titles and descriptions
+            widget: object
+            fields:
+              - name: home
+                label: Forside / Home
+                widget: object
+                fields:
+                  - name: title
+                    label: Tittel (vises i Google og nettleserfanen) / Title
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: Beskrivelse (vises i Google) / Description
+                    widget: text
+                    i18n: true
+                collapsed: true
+                i18n: true
+              - name: portfolio
+                label: Portefølje / Portfolio
+                widget: object
+                fields:
+                  - name: title
+                    label: Tittel (vises i Google og nettleserfanen) / Title
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: Beskrivelse (vises i Google) / Description
+                    widget: text
+                    i18n: true
+                collapsed: true
+                i18n: true
+              - name: about
+                label: Om meg / About
+                widget: object
+                fields:
+                  - name: title
+                    label: Tittel (vises i Google og nettleserfanen) / Title
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: Beskrivelse (vises i Google) / Description
+                    widget: text
+                    i18n: true
+                collapsed: true
+                i18n: true
+              - name: services
+                label: Priser / Pricing
+                widget: object
+                fields:
+                  - name: title
+                    label: Tittel (vises i Google og nettleserfanen) / Title
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: Beskrivelse (vises i Google) / Description
+                    widget: text
+                    i18n: true
+                collapsed: true
+                i18n: true
+              - name: faq
+                label: Spørsmål og svar / FAQ
+                widget: object
+                fields:
+                  - name: title
+                    label: Tittel (vises i Google og nettleserfanen) / Title
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: Beskrivelse (vises i Google) / Description
+                    widget: text
+                    i18n: true
+                collapsed: true
+                i18n: true
+              - name: contact
+                label: Kontakt / Contact
+                widget: object
+                fields:
+                  - name: title
+                    label: Tittel (vises i Google og nettleserfanen) / Title
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: Beskrivelse (vises i Google) / Description
+                    widget: text
+                    i18n: true
+                collapsed: true
+                i18n: true
+              - name: privacy
+                label: Personvern / Privacy
+                widget: object
+                fields:
+                  - name: title
+                    label: Tittel (vises i Google og nettleserfanen) / Title
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: Beskrivelse (vises i Google) / Description
+                    widget: text
+                    i18n: true
+                collapsed: true
+                i18n: true
+              - name: notFound
+                label: Side ikke funnet / Page not found
+                widget: object
+                fields:
+                  - name: title
+                    label: Tittel (vises i Google og nettleserfanen) / Title
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: Beskrivelse (vises i Google) / Description
+                    widget: text
+                    i18n: true
+                collapsed: true
+                i18n: true
+            i18n: true
+  - name: settings
+    label: Innstillinger / Settings
+    icon: settings
+    files:
+      - name: settings
+        label: Kontakt, priser og portrett / Contact, prices and portrait
+        file: src/content/settings.json
+        format: json
+        fields:
+          - name: email
+            label: E-post / Email
+            widget: string
+          - name: instagram
+            label: Instagram-brukernavn (uten @) / Instagram username (without @)
+            widget: string
+          - name: orgNumber
+            label: Organisasjonsnummer (vises i bunnteksten når det er fylt ut) / Org. number
+            widget: string
+            required: false
+          - name: prices
+            label: Startpriser i kroner / Starting prices in NOK
+            widget: object
+            fields:
+              - name: couples
+                label: Par og forlovelse / Couples
+                widget: number
+                value_type: int
+              - name: pregnancy
+                label: Gravid / Pregnancy
+                widget: number
+                value_type: int
+              - name: family
+                label: Familie / Family
+                widget: number
+                value_type: int
+          - name: aboutImage
+            label: Portrett av Veronika / Portrait of Veronika
+            widget: image
