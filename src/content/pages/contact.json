@@ -2,13 +2,13 @@
   "no": {
     "heading": "Kontakt og booking",
     "intro": "Har du lyst til å booke en fotografering, eller lurer du på noe? Fyll ut skjemaet, så svarer jeg deg på e-post.",
-    "responseNote": "Jeg svarer vanligvis innen 1-4 virkedager.",
+    "responseNote": "Jeg svarer vanligvis innen 1-2 virkedager.",
     "location": "Oslo. Reise etter avtale."
   },
   "en": {
     "heading": "Contact and booking",
     "intro": "Would you like to book a session, or do you have a question? Fill in the form and I will reply by email.",
-    "responseNote": "I usually reply within 1-4 working days.",
+    "responseNote": "I usually reply within 1-2 working days.",
     "location": "Oslo. Travel by agreement."
   }
 }
