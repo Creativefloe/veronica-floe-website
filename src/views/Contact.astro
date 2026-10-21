@@ -2,13 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import { site, instagramUrl } from '../config/site';
-import { t, type Lang } from '../i18n';
+import { t, url, type Lang } from '../i18n';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const c = t(lang);
 const f = c.contact.form;
-const endpoint = site.formEndpoint;
+// Submissions go to Netlify Forms (form name "kontakt"). Netlify emails each one to the address set
+// under Project configuration > Notifications > Form submission notifications.
+const FORM_NAME = 'kontakt';
 const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)}`;
 ---
 <BaseLayout lang={lang} page="contact" hideMobileBook>
@@ -21,11 +23,13 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)
     <div class="form-col">
       <form
         class="form"
+        name={FORM_NAME}
         method="POST"
-        action={endpoint || undefined}
+        action={`${url('contact', lang)}?sendt=1`}
+        data-netlify="true"
+        netlify-honeypot="bot-field"
         novalidate
         data-contact-form
-        data-endpoint={endpoint}
         data-sending={f.sending}
       >
         <div class="alert alert--error" role="alert" tabindex="-1" hidden data-summary>
@@ -34,12 +38,13 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)
 
         <p class="req-note">{f.requiredNote}</p>
 
-        <input type="hidden" name="_subject" value={`${f.mailSubject} (${lang.toUpperCase()})`} />
+        <input type="hidden" name="form-name" value={FORM_NAME} />
+        <input type="hidden" name="subject" value={`${f.mailSubject} - creativefloe.com (${lang === 'no' ? 'norsk' : 'English'})`} />
         <input type="hidden" name="language" value={lang === 'no' ? 'Norsk' : 'English'} />
         <!-- Honeypot: real visitors never see or fill this field -->
         <div class="hp" aria-hidden="true">
           <label for="website">Website</label>
-          <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off" />
+          <input type="text" id="website" name="bot-field" tabindex="-1" autocomplete="off" />
         </div>
 
         <div class="grid">
@@ -93,7 +98,7 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)
 
         <div class="alert alert--error" role="alert" hidden data-failure>
           <p>
-            {endpoint ? f.failure : f.notConfigured}
+            {f.failure}
             {' '}<a href={mailto}>{site.email}</a>
           </p>
         </div>
@@ -262,20 +267,15 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(f.mailSubject)
       }
       summary.hidden = true;
 
-      const endpoint = form.dataset.endpoint;
-      if (!endpoint) {
-        failure.hidden = false;
-        failure.scrollIntoView({ block: 'center' });
-        return;
-      }
-
       submit.disabled = true;
       submit.textContent = form.dataset.sending!;
       try {
-        const res = await fetch(endpoint, {
+        // Netlify Forms accepts a URL-encoded POST to the site root
+        const body = new URLSearchParams(new FormData(form) as unknown as Record<string, string>).toString();
+        const res = await fetch('/', {
           method: 'POST',
-          body: new FormData(form),
-          headers: { Accept: 'application/json' },
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body,
         });
         if (!res.ok) throw new Error(String(res.status));
         form.hidden = true;

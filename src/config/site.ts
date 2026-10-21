@@ -22,9 +22,6 @@ export const site = {
   /** Portrait used on the About page and home page. */
   aboutImage: settings.aboutImage,
 
-  /** Contact form endpoint (Formspree). Set PUBLIC_FORM_ENDPOINT in .env or your hosting dashboard. */
-  formEndpoint: import.meta.env.PUBLIC_FORM_ENDPOINT || '',
-
   /**
    * Optional privacy-friendly analytics (no cookies), e.g. Plausible or Umami.
    * Off by default. To turn on, set `enabled: true` and fill in the details,

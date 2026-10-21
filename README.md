@@ -45,7 +45,6 @@ The result ends up in the `dist/` folder. `npm run preview` shows the built vers
    The settings are read from `netlify.toml` automatically (build command `npm run build`, publish folder `dist`).
 3. Under **Site configuration → Environment variables**, add:
    - `SITE_URL` = your domain, e.g. `https://creativefloe.com`
-   - `PUBLIC_FORM_ENDPOINT` = your Formspree address (see section 3)
 4. Under **Domain management**, connect your domain.
 5. **Editor login** (needed once, for /admin/): on GitHub open *Settings → Developer settings → OAuth Apps → New OAuth App*.
    Name: `Creative Flø editor`, Homepage URL: `https://creativefloe.com`, Callback URL: `https://api.netlify.com/auth/done`.
@@ -57,21 +56,25 @@ The result ends up in the `dist/` folder. `npm run preview` shows the built vers
 
 1. On Cloudflare: **Workers & Pages → Create → Pages → Connect to Git**.
 2. Framework preset: **Astro**. Build command `npm run build`, output folder `dist`.
-3. Add the same two environment variables (`SITE_URL`, `PUBLIC_FORM_ENDPOINT`) and set `NODE_VERSION` = `22`.
+3. Add the `SITE_URL` environment variable and set `NODE_VERSION` = `22`. (The contact form needs Netlify Forms, so on Cloudflare it would need a different form service.)
 
 After changing environment variables, start a new deploy so they take effect.
 
 ---
 
-## 3. Connect the contact form (Formspree)
+## 3. Contact form (Netlify Forms)
 
-1. Create a free account at [formspree.io](https://formspree.io) with `creativefloe@gmail.com`.
-2. Create a new form. You get an address like `https://formspree.io/f/abcdwxyz`.
-3. Put it in `PUBLIC_FORM_ENDPOINT` in Netlify/Cloudflare (and in a `.env` file for local testing, see `.env.example`).
-4. Send a test message from the live site and confirm it in your inbox.
+The contact form uses **Netlify Forms**, which is built into Netlify (free, no extra account).
+Each enquiry is stored in Netlify and emailed to Veronika.
 
-Until this is done, the form tells visitors to email you directly. The email link is always visible on the contact page.
-Spam protection: the form has a hidden "honeypot" field (`_gotcha`) that Formspree uses to block bots.
+- **See all enquiries:** Netlify → the project → **Forms** → form `kontakt`.
+- **Who gets the email:** Netlify → **Project configuration → Notifications → Emails and webhooks →
+  Form submission notifications**. Add or change the address there.
+- **Spam:** a hidden "honeypot" field (`bot-field`) and Netlify's spam filter catch bots.
+  Anything flagged ends up under **Forms → Spam submissions**, so check there now and then.
+- Replying: just reply to the email. The visitor's email address is in the message.
+
+The form only works on the live site (or a Netlify deploy preview), not in `npm run dev`.
 
 ---
 
